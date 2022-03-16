@@ -1,14 +1,13 @@
-Prostredi
+Prostredie
 ---------
 
-Ubuntu 64bit
 Windows 64bit
 
 Autori
 ------
 
 Nazev tymu
-- xlogin01 jmeno prijmeni 
+- xsluka00 Dušan Slúka 
 - xlogin02 jmeno prijmeni 
 - xlogin03 jmeno prijmeni 
 - xlogin04 jmeno prijmeni 
