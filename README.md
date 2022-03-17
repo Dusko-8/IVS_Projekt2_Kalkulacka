@@ -6,11 +6,11 @@ Windows 64bit
 Autori
 ------
 
-Nazev tymu
+Memory Leak
 - xsluka00 Dušan Slúka 
-- xlogin02 jmeno prijmeni 
-- xlogin03 jmeno prijmeni 
-- xlogin04 jmeno prijmeni 
+- xduric06 Matúš Ďurica
+- xmahut01 Ivan Mahút
+- xpagan00 Gabriela Paganíková
 
 Licence
 -------
