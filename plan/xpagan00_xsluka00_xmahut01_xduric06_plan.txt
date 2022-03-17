@@ -1,0 +1,60 @@
+1. Termíny:
+
+	15.03.2022 - Výber vývojovej platformy, IDE a komunikačných kanálov
+	18.03.2022 - Plán projektu
+	25.03.2022 - Testy pre matematickú knižnicu, GUI
+	02.04.2022 - Vytvorenie knižnice (TDD)
+	09.04.2022 - Implementovanie knižnice
+	16.04.2022 - Prepojenie knižnice s GUI
+	20.04.2022 - Mockup GUI, vytvorenie inštalačného balíčku, profiling
+	22.04.2022 - Vytvorenie MakeFile
+	24.04.2022 - Finalizácia dokumentácie a užívateľskej príručky
+	26.04.2022 - Finalizácia projektu
+	29.04.2022 - Odovzdanie
+	21.05.2022 - Odovzdanie problémov
+
+
+2. Rozdelenie úloh:
+
+	Gabriela Paganíková (xpagan00)
+		- Implementovanie knižnice
+		- Dokumentácia, užívateľská príručka
+	Ivan Mahút (xmahut01)
+		- GUI
+		- Mockup GUI
+		- Profiling
+	Matúš Ďurica (xduric06)
+		- Prepojenie knižnice s GUI
+		- Inštalačný/odinštalačný balíček
+		- MakeFile
+	Dušan Slúka (xsluka00)
+		- Plánovanie projektu
+		- TDD testy pre knižnicu
+		- Vytvorenie knižnice podľa TDD testov
+
+	Spoločné úlohy:
+		- Vyhodnotenie práce
+		- Zhrnutie problémov 
+		- Zhrnutie rozdielov plán/skutočnosť
+		- Vytvorenie PDF k obhajobe
+
+3. Komunikačné kanály
+	
+	Discord - Automatické posielanie notifikácií o zmenách na GitHube pomocou bota
+		- Meetingy
+		- Vyhodnocovanie termínov
+
+	ClickUp - Plánovanie projektu
+		- Zaznamenávanie štatistík, zaťaženia a vykonanej práce
+		- Sledovanie termínov
+		- Podrobné rozdelenie úloh (sub-tasks)
+
+	Osobné stretnutia - Nácvik obhajoby
+			  - Riešenie spoločných úloh
+
+
+4. Hosting a správa verzií
+	
+	GitHub - Použitý na správu verzií aj hosting
+
+	Link na repozitár: https://github.com/Dusko-8/IVS_Projekt2_Kalkulacka
