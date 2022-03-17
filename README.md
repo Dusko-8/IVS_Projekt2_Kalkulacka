@@ -15,4 +15,4 @@ Memory Leak
 Licence
 -------
 
-Tento program je poskytovan...
+GNU GPL v.3
