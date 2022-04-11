@@ -1,0 +1,10 @@
+P:\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\Calculator.exe.config
+P:\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\Calculator.exe
+P:\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\Calculator.pdb
+P:\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.AssemblyReference.cache
+P:\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.SuggestedBindingRedirects.cache
+P:\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.Properties.Resources.resources
+P:\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.GenerateResource.cache
+P:\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
+P:\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.exe
+P:\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.pdb
