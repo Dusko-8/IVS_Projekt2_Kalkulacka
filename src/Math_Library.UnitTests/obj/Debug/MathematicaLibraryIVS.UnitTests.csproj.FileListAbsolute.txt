@@ -1,0 +1,17 @@
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\obj\Debug\MathematicaLibraryIVS.UnitTests.csproj.AssemblyReference.cache
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\obj\Debug\MathematicaLibraryIVS.UnitTests.csproj.CoreCompileInputs.cache
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\bin\Debug\Microsoft.TestPlatform.AdapterUtilities.dll
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\bin\Debug\Math_Library.UnitTests.dll
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\bin\Debug\Math_Library.UnitTests.pdb
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\bin\Debug\MathematicaLibraryIVS.dll
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\bin\Debug\MathematicaLibraryIVS.pdb
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\obj\Debug\MathematicaLibraryIVS.UnitTests.csproj.CopyComplete
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\obj\Debug\Math_Library.UnitTests.dll
+P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\obj\Debug\Math_Library.UnitTests.pdb

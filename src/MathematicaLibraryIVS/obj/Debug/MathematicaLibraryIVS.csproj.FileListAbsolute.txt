@@ -1,0 +1,6 @@
+P:\IVS_Projekt2_Kalkulacka\LIB%NU_GET\MathematicaLibraryIVS.dll
+P:\IVS_Projekt2_Kalkulacka\LIB%NU_GET\MathematicaLibraryIVS.pdb
+P:\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\obj\Debug\MathematicaLibraryIVS.csproj.AssemblyReference.cache
+P:\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\obj\Debug\MathematicaLibraryIVS.csproj.CoreCompileInputs.cache
+P:\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\obj\Debug\MathematicaLibraryIVS.dll
+P:\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\obj\Debug\MathematicaLibraryIVS.pdb
