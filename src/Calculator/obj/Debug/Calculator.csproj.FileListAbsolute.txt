@@ -8,3 +8,7 @@ P:\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.GenerateRe
 P:\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
 P:\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.exe
 P:\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.pdb
+P:\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.Form1.resources
+P:\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\MathematicaLibraryIVS.dll
+P:\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\MathematicaLibraryIVS.pdb
+P:\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.CopyComplete
