@@ -12,3 +12,17 @@ P:\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.Form1.resources
 P:\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\MathematicaLibraryIVS.dll
 P:\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\MathematicaLibraryIVS.pdb
 P:\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.CopyComplete
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\Calculator.exe.config
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\Calculator.exe
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\Calculator.pdb
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\MathematicaLibraryIVS.dll
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\MathematicaLibraryIVS.pdb
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.AssemblyReference.cache
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.SuggestedBindingRedirects.cache
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.Properties.Resources.resources
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.GenerateResource.cache
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.CopyComplete
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.exe
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.pdb
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.CalculatorWindow.resources
