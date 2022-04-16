@@ -399,7 +399,15 @@ namespace Calculator
                 lineClear = true;
             }
         }
+        /// <summary>
+        /// Fuction handling power of number
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void power_click(object sender, EventArgs e)
+        {
 
+        }
         /// <summary>
         /// Fuction handling "=" button click
         /// </summary>
