@@ -40,3 +40,17 @@ C:\Users\gabik\Desktop\skola\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\bi
 C:\Users\gabik\Desktop\skola\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\MathematicaLibraryIVS.pdb
 C:\Users\gabik\Desktop\skola\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.CopyComplete
 C:\Users\gabik\Desktop\skola\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.exe
+C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\Calculator.exe.config
+C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\Calculator.exe
+C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\Calculator.pdb
+C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\MathematicaLibraryIVS.dll
+C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\MathematicaLibraryIVS.pdb
+C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.AssemblyReference.cache
+C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.SuggestedBindingRedirects.cache
+C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.CalculatorWindow.resources
+C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.Properties.Resources.resources
+C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.GenerateResource.cache
+C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
+C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.csproj.CopyComplete
+C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.exe
+C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.pdb

@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MathematicaLibraryIVS;
+
+//known bugs:
+//1. po stlaceni klavesy a naslednom drzani enter sa spamuje cislo
+//2. nadvazuje na 1. -> po zaspamovani a naslednom stlaceni znamienka padne calc
+//3. napr 1+1=2 a nasledne spamovanie + robi mocniny (pravdepodobne)
+//4. 0 + nieco po stlaceni = nevypise vysledok treba 2x stlacit znamienko a potom = a vypise
+//5.. po fucktoriale po prepisani cisla sa neberie znamienko
 
 namespace Calculator
 {
@@ -37,7 +44,7 @@ namespace Calculator
             if (!txtNumBox.Text.Contains(","))
             {
                 txtNumBox.Text += ",";
-                lineClear = false; 
+                lineClear = false;
             }
         }
 
@@ -46,15 +53,16 @@ namespace Calculator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void insert1_Click(object sender, EventArgs e)
+        private void insertNum_Click(object sender, EventArgs e)
         {
+            Button opButton = (Button)sender;
             // clears line for new input
             if (lineClear)
             {
                 txtNumBox.Clear();
                 lineClear = false;
             }
-            txtNumBox.Text += "1";
+            txtNumBox.Text += opButton.Text;
             opLast = false;
             //clears track box, before new calculation
             if (trackClear)
@@ -68,6 +76,8 @@ namespace Calculator
                 eqLast = false;
             }
         }
+
+        /* zakomentovane pre istotu, funkcia vyssie je globalne na vsetky cisla
         private void insert2_click(object sender, EventArgs e)
         {
             if (lineClear)
@@ -248,6 +258,8 @@ namespace Calculator
             }
         }
 
+        */
+
         /// <summary>
         /// Function clears txtNumBox and sets its value to 0
         /// </summary>
@@ -264,7 +276,7 @@ namespace Calculator
         }
 
         /// <summary>
-        /// Function clears, result box, track box, result and numbers
+        /// Function clears result box, track box, result and numbers
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -290,6 +302,11 @@ namespace Calculator
             Button opButton = (Button)sender;
             if (!opLast)
             {
+                if (txtNumBox.Text == "Error")
+                {
+                    firstNum = 0;
+                    txtNumBox.Text = "0";
+                }
                 if (firstNum == 0) //first operation
                 {
                     firstNum = Convert.ToDecimal(txtNumBox.Text);
@@ -312,7 +329,7 @@ namespace Calculator
                     operationCount++;
                     opLast = true;
                 }
-                else 
+                else
                 {
                     operationCount++;
                     if (operationCount >= 3) // chaining 3 or more operation
@@ -346,7 +363,7 @@ namespace Calculator
         {
             if (!type)
             {
-                if(txtBoxTrack.Text == "0")
+                if (txtBoxTrack.Text == "0")
                 {
                     txtBoxTrack.Text = "";
                 }
@@ -372,7 +389,7 @@ namespace Calculator
                     result = ML.plus(firstNum, secNum);
                     break;
                 case "-":
-                    if(secNum != 0)
+                    if (secNum != 0)
                     {
                         result = ML.minus(firstNum, secNum);
                         txtNumBox.Text = result.ToString();
@@ -385,20 +402,53 @@ namespace Calculator
                         txtNumBox.Text = "Chyba";
                     }
                     break;
-                case "×": 
+                case "×":
                     result = ML.multiply(firstNum, secNum);
                     break;
                 case "÷":
                     result = ML.divide(firstNum, secNum);
                     break;
             }
-            if(operatorStr != "-")
+            if (operatorStr != "-")
             {
                 txtNumBox.Text = result.ToString();
                 operatorStr = "";
                 lineClear = true;
             }
         }
+
+        /// <summary>
+        /// Fuction handling factorial of number
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFct_click(object sender, EventArgs e)
+        {
+            firstNum = Convert.ToDecimal(txtNumBox.Text);
+            if (firstNum == 0)
+            {
+                lineClear = true;
+                return;
+            }
+            try
+            {
+
+                result = ML.factorial(firstNum);
+                txtNumBox.Text = result.ToString();
+                firstNum = result;
+                eqLast = true;
+                //lineClear = true;
+
+            }
+            catch (Exception)
+            {
+                txtNumBox.Text = "Error";
+                lineClear = true;
+
+            }
+
+        }
+
         /// <summary>
         /// Fuction handling power of number
         /// </summary>
@@ -415,7 +465,7 @@ namespace Calculator
         /// <param name="e"></param>
         private void eql_click(object sender, EventArgs e)
         {
-            if (!opLast)
+            if (!opLast && !eqLast)
             {
                 if (operatorStr != "sqr" && operatorStr != "fact" && operatorStr != "sqrt")
                 {
