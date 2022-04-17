@@ -13,8 +13,7 @@ using MathematicaLibraryIVS;
 //1. po stlaceni klavesy a naslednom drzani enter sa spamuje cislo
 //2. nadvazuje na 1. -> po zaspamovani a naslednom stlaceni znamienka padne calc
 //3. napr 1+1=2 a nasledne spamovanie + robi mocniny (pravdepodobne)
-//4. 0 + nieco po stlaceni = nevypise vysledok treba 2x stlacit znamienko a potom = a vypise
-//5.. po fucktoriale po prepisani cisla sa neberie znamienko
+
 
 namespace Calculator
 {
@@ -307,7 +306,7 @@ namespace Calculator
                     firstNum = 0;
                     txtNumBox.Text = "0";
                 }
-                if (firstNum == 0) //first operation
+                if (firstNum == 0 && operationCount == 0) //first operation
                 {
                     firstNum = Convert.ToDecimal(txtNumBox.Text);
                     labelSet(false, txtNumBox.Text);
@@ -389,18 +388,10 @@ namespace Calculator
                     result = ML.plus(firstNum, secNum);
                     break;
                 case "-":
-                    if (secNum != 0)
-                    {
-                        result = ML.minus(firstNum, secNum);
-                        txtNumBox.Text = result.ToString();
-                        operatorStr = "";
-                        lineClear = true;
-                    }
-                    else
-                    {
-                        btnCE.PerformClick();
-                        txtNumBox.Text = "Chyba";
-                    }
+                    result = ML.minus(firstNum, secNum);
+                    txtNumBox.Text = result.ToString();
+                    operatorStr = "";
+                    lineClear = true;
                     break;
                 case "×":
                     result = ML.multiply(firstNum, secNum);
@@ -437,7 +428,7 @@ namespace Calculator
                 txtNumBox.Text = result.ToString();
                 firstNum = result;
                 eqLast = true;
-                //lineClear = true;
+                lineClear = true;
 
             }
             catch (Exception)
@@ -469,7 +460,7 @@ namespace Calculator
             {
                 if (operatorStr != "sqr" && operatorStr != "fact" && operatorStr != "sqrt")
                 {
-                    if (firstNum != 0)
+                    if (operationCount >= 1)
                     {
                         if (operationCount >= 2)
                         {
