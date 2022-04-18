@@ -13,6 +13,7 @@ using MathematicaLibraryIVS;
 //1. po stlaceni klavesy a naslednom drzani enter sa spamuje cislo
 //2. nadvazuje na 1. -> po zaspamovani a naslednom stlaceni znamienka padne calc
 //3. napr 1+1=2 a nasledne spamovanie + robi mocniny (pravdepodobne)
+//4. napr 2! po stlaceni 2 je zapisane 2!2
 
 
 namespace Calculator
@@ -23,6 +24,7 @@ namespace Calculator
         bool eqLast = false; // true - last pressed button is equation
         bool opLast = false; // true - last pressed button is operation button
         bool trackClear = false; // true - txtTrackBox needs to be cleared
+        bool commaLast = false; // true - if basic operation button is pressed, 0 is added after the comma
         decimal firstNum = 0;
         decimal secNum = 0;
         decimal result = 0;
@@ -40,8 +42,13 @@ namespace Calculator
         /// <param name="e"></param>
         private void insertComma_Click(object sender, EventArgs e)
         {
+            if (txtNumBox.Text == "Error")
+            {
+                return;
+            }
             if (!txtNumBox.Text.Contains(","))
             {
+                commaLast = true;
                 txtNumBox.Text += ",";
                 lineClear = false;
             }
@@ -303,8 +310,12 @@ namespace Calculator
             {
                 if (txtNumBox.Text == "Error")
                 {
-                    firstNum = 0;
-                    txtNumBox.Text = "0";
+                    return;
+                }
+                if (commaLast)
+                {
+                    txtNumBox.Text += "0";
+                    commaLast = false;
                 }
                 if (firstNum == 0 && operationCount == 0) //first operation
                 {
@@ -415,7 +426,23 @@ namespace Calculator
         /// <param name="e"></param>
         private void btnFct_click(object sender, EventArgs e)
         {
-            firstNum = Convert.ToDecimal(txtNumBox.Text);
+            
+            if (commaLast)
+            {
+                txtNumBox.Text += "0";
+                commaLast = false;
+            }
+            //Button press wont work until there is Error message displayed
+            if (txtNumBox.Text == "Error")
+            {
+                return;
+            }
+            //If Error isnt displayed number is converted from txtNumBox
+            else
+            {
+                firstNum = Convert.ToDecimal(txtNumBox.Text);
+            }
+            //Prevents doing factorial of 0
             if (firstNum == 0)
             {
                 lineClear = true;
@@ -424,6 +451,9 @@ namespace Calculator
             try
             {
 
+                labelSet(false, txtNumBox.Text);
+                operatorStr = "!";
+                labelSet(false, operatorStr);
                 result = ML.factorial(firstNum);
                 txtNumBox.Text = result.ToString();
                 firstNum = result;
@@ -431,13 +461,14 @@ namespace Calculator
                 lineClear = true;
 
             }
+            //If any exception is thrown from the ML library, calculator will print error
             catch (Exception)
             {
+                firstNum = 0;
                 txtNumBox.Text = "Error";
                 lineClear = true;
-
+                txtBoxTrack.Clear();
             }
-
         }
 
         /// <summary>
