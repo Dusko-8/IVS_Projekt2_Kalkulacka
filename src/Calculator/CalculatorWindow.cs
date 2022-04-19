@@ -12,19 +12,31 @@ using MathematicaLibraryIVS;
 //known bugs:
 //1. po stlaceni klavesy a naslednom drzani enter sa spamuje cislo
 //2. nadvazuje na 1. -> po zaspamovani a naslednom stlaceni znamienka padne calc
-//3. napr 1+1=2 a nasledne spamovanie + robi mocniny (pravdepodobne)
-//4. napr 2! po stlaceni 2 je zapisane 2!2
-
 
 namespace Calculator
 {
     public partial class CalculatorWindow : Form
     {
-        bool lineClear = true; // true - txtNumBox needs to be cleared
-        bool eqLast = false; // true - last pressed button is equation
-        bool opLast = false; // true - last pressed button is operation button
-        bool trackClear = false; // true - txtTrackBox needs to be cleared
-        bool commaLast = false; // true - if basic operation button is pressed, 0 is added after the comma
+        /// <summary>
+        /// true - txtNumBox needs to be cleared
+        /// </summary>
+        bool lineClear = true;
+        /// <summary>
+        /// true - last pressed button is equation
+        /// </summary>
+        bool eqLast = false;
+        /// <summary>
+        /// true - last pressed button is operation button
+        /// </summary>
+        bool opLast = false;
+        /// <summary>
+        /// true - txtTrackBox needs to be cleared
+        /// </summary>
+        bool trackClear = false;
+        /// <summary>
+        /// true - if basic operation button is pressed, 0 is added after the comma
+        /// </summary>
+        bool commaLast = false;
         decimal firstNum = 0;
         decimal secNum = 0;
         decimal result = 0;
@@ -33,6 +45,19 @@ namespace Calculator
         public CalculatorWindow()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Function for printing Error, resets firstNumber, operatorStr and operationCount, sets clearing for txtNumbox, clears txtTrackBox
+        /// </summary>
+        private void printError()
+        {
+            txtNumBox.Text = "Error";
+            firstNum = 0;
+            lineClear = true;
+            txtBoxTrack.Clear();
+            operationCount = 0;
+            operatorStr = "";
         }
 
         /// <summary>
@@ -345,18 +370,32 @@ namespace Calculator
                     if (operationCount >= 3) // chaining 3 or more operation
                     {
                         secNum = Convert.ToDecimal(txtNumBox.Text);
-                        computeRes(result, Convert.ToDecimal(txtNumBox.Text), operatorStr);
+                        computeRes(result, secNum, operatorStr);
+
                         labelSet(true, operatorStr);
                         labelSet(false, secNum.ToString());
-                        operatorStr = opButton.Text;
+
+                        operatorStr = opButton.Text; //funguje aj bez tohoto
+
+                        opLast = true;
+
                         firstNum = result;
+                        //printing the result
+                        txtNumBox.Text = result.ToString();   
                     }
                     else // chaining two operations
                     {
                         labelSet(false, txtNumBox.Text);
+
                         computeRes(firstNum, Convert.ToDecimal(txtNumBox.Text), operatorStr);
+
                         operatorStr = opButton.Text;
+
+                        opLast = true;
+
                         firstNum = result;
+                        //printing the result
+                        txtNumBox.Text = result.ToString();
                     }
                     lineClear = true;
                 }
@@ -400,9 +439,6 @@ namespace Calculator
                     break;
                 case "-":
                     result = ML.minus(firstNum, secNum);
-                    txtNumBox.Text = result.ToString();
-                    operatorStr = "";
-                    lineClear = true;
                     break;
                 case "×":
                     result = ML.multiply(firstNum, secNum);
@@ -411,12 +447,7 @@ namespace Calculator
                     result = ML.divide(firstNum, secNum);
                     break;
             }
-            if (operatorStr != "-")
-            {
-                txtNumBox.Text = result.ToString();
-                operatorStr = "";
-                lineClear = true;
-            }
+            
         }
 
         /// <summary>
@@ -451,23 +482,20 @@ namespace Calculator
             try
             {
 
-                labelSet(false, txtNumBox.Text);
-                operatorStr = "!";
-                labelSet(false, operatorStr);
+                labelSet(false, txtNumBox.Text + "!");
                 result = ML.factorial(firstNum);
                 txtNumBox.Text = result.ToString();
                 firstNum = result;
                 eqLast = true;
                 lineClear = true;
+                operationCount = 0;
+                trackClear = true;
 
             }
             //If any exception is thrown from the ML library, calculator will print error
             catch (Exception)
             {
-                firstNum = 0;
-                txtNumBox.Text = "Error";
-                lineClear = true;
-                txtBoxTrack.Clear();
+                printError();
             }
         }
 
@@ -480,6 +508,7 @@ namespace Calculator
         {
 
         }
+        
         /// <summary>
         /// Fuction handling "=" button click
         /// </summary>
@@ -500,12 +529,24 @@ namespace Calculator
                         labelSet(false, txtNumBox.Text);
                         secNum = Convert.ToDecimal(txtNumBox.Text);
                         labelSet(true, "=");
-                        computeRes(firstNum, secNum, operatorStr);
-                        trackClear = true;
-                        operatorStr = "";
-                        operationCount = 0;
-                        eqLast = true;
-                        firstNum = result;
+                        try
+                        {
+                            computeRes(firstNum, secNum, operatorStr);
+                            trackClear = true;
+                            operatorStr = ""; //co robi toto? program funguje aj bez toho
+                            operationCount = 0;
+                            eqLast = true;
+                            firstNum = result;
+                            //printing the result
+                            txtNumBox.Text = result.ToString();
+                            operatorStr = "";
+                            lineClear = true;
+                        }
+                        catch (Exception)
+                        {
+                            printError();
+                        }
+                        
                     }
                 }
                 else
@@ -514,6 +555,8 @@ namespace Calculator
                 }
             }
         }
+
+        
 
         private void help_Click(object sender, EventArgs e)
         {
