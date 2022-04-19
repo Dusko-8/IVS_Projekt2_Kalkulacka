@@ -498,6 +498,34 @@ namespace Calculator
                 printError();
             }
         }
+        /// <summary>
+        /// Function handling modulo of number
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mod_click(object sender, EventArgs e)
+        {
+            if (commaLast)
+            {
+                txtNumBox.Text += "0";
+                commaLast = false;
+            }
+            //Button press wont work until there is Error message displayed
+            if (txtNumBox.Text == "Error")
+            {
+                return;
+            }
+            //If Error isnt displayed number is converted from txtNumBox
+            else
+            {
+                firstNum = Convert.ToDecimal(txtNumBox.Text);
+                labelSet(false, txtNumBox.Text);
+                operatorStr = "%";
+                labelSet(true, operatorStr);
+                opLast = true;
+                lineClear=true;
+            }
+        }
 
         /// <summary>
         /// Fuction handling power of number
@@ -516,9 +544,10 @@ namespace Calculator
         /// <param name="e"></param>
         private void eql_click(object sender, EventArgs e)
         {
+            
             if (!opLast && !eqLast)
             {
-                if (operatorStr != "sqr" && operatorStr != "fact" && operatorStr != "sqrt")
+                if (operatorStr != "sqr" && operatorStr != "fact" && operatorStr != "sqrt" && operatorStr != "%")
                 {
                     if (operationCount >= 1)
                     {
@@ -551,7 +580,25 @@ namespace Calculator
                 }
                 else
                 {
-                    //TODO pre zvysne funkcie
+                    try
+                    {
+                        labelSet(false, txtNumBox.Text);
+                        labelSet(true, "=");
+                        result = ML.modulo(firstNum, Convert.ToDecimal(txtNumBox.Text));
+                        txtNumBox.Text = result.ToString();
+                        firstNum = result;
+                        eqLast = true;
+                        lineClear = true;
+                        operationCount = 0;
+                        operatorStr = "";
+                        trackClear = true;
+
+                    }
+                    //If any exception is thrown from the ML library, calculator will print error
+                    catch (Exception)
+                    {
+                        printError();
+                    }
                 }
             }
         }
