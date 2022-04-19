@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -194,7 +194,7 @@ namespace Calculator
 
                         firstNum = result;
                         //printing the result
-                        txtNumBox.Text = result.ToString();   
+                        txtNumBox.Text = result.ToString();
                     }
                     else // chaining two operations
                     {
@@ -272,7 +272,7 @@ namespace Calculator
                     result = ML.root(firstNum, (decimal)secNum);
                     break;
             }
-            
+
         }
 
         /// <summary>
@@ -282,7 +282,7 @@ namespace Calculator
         /// <param name="e"></param>
         private void btnFct_click(object sender, EventArgs e)
         {
-            
+
             //If user is chaining operations, they will be calculated first, then the factorial will be done
             if (operationCount > 1)
             {
@@ -340,7 +340,7 @@ namespace Calculator
                 operatorStr = "%";
                 labelSet(true, operatorStr);
                 opLast = true;
-                lineClear=true;
+                lineClear = true;
             }
         }
 
@@ -351,6 +351,11 @@ namespace Calculator
         /// <param name="e"></param>
         private void power_click(object sender, EventArgs e)
         {
+            if (operationCount > 1)
+            {
+                labelSet(true, operatorStr);
+                printResult();
+            }
             commaCheck();
             //Button press wont work until there is Error message displayed
             if (txtNumBox.Text == "Error")
@@ -369,7 +374,7 @@ namespace Calculator
             }
 
         }
-        
+
         /// <summary>
         /// Fuction handling root of number
         /// </summary>
@@ -391,7 +396,7 @@ namespace Calculator
             //If Error isnt displayed number is converted from txtNumBox
             else
             {
-               
+
                 if (operationCount == 0)
                 {
                     firstNum = Convert.ToDecimal(txtNumBox.Text);
@@ -463,7 +468,7 @@ namespace Calculator
                     case "√":
                         try
                         {
-                            
+
                             printResult();
                             eqLast = true;
                         }
@@ -475,25 +480,32 @@ namespace Calculator
                 }
             }
         }
-        
+
         /// <summary>
         /// Function for printing result
         /// </summary>
         private void printResult()
         {
-            //Without this condition, the number left in the txtNumBox would be printed behind the factorial in the txtTrackBox
-            if (operatorStr != "!")
+            //Formatting of special prints
+            switch (operatorStr)
             {
-                if(operatorStr != "√")
-                {
-                    labelSet(false, txtNumBox.Text);
-                }
-                else
-                {
+                case "√":
                     txtBoxTrack.Clear();
                     labelSet(false, txtNumBox.Text + operatorStr + firstNum);
-                }
+                    break;
+                case "^":
+                    txtBoxTrack.Clear();
+                    labelSet(false, firstNum + operatorStr + txtNumBox.Text);
+                    break;
+                case "!":
+                    txtBoxTrack.Clear();
+                    labelSet(false, firstNum + operatorStr);
+                    break;
+                default:
+                    labelSet(false, txtNumBox.Text);
+                    break;
             }
+
             labelSet(true, "=");
             secNum = Convert.ToDecimal(txtNumBox.Text);
             computeRes(firstNum, secNum, operatorStr);
@@ -504,7 +516,7 @@ namespace Calculator
             firstNum = result;
             txtNumBox.Text = result.ToString();
         }
-        
+
         /// <summary>
         /// Function for checking if the last input character before operation was a comma
         /// </summary>
