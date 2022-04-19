@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MathematicaLibraryIVS;
+using System;
 using System.Windows.Forms;
-using MathematicaLibraryIVS;
 
 //known bugs:
 //1. po stlaceni klavesy a naslednom drzani enter sa spamuje cislo
@@ -106,6 +99,7 @@ namespace Calculator
                 firstNum = 0;
                 eqLast = false;
             }
+            commaLast = false;
         }
 
         /// <summary>
@@ -306,11 +300,13 @@ namespace Calculator
                 lineClear = true;
                 return;
             }
+
             try
             {
                 operatorStr = "!";
                 labelSet(false, txtNumBox.Text + operatorStr);
                 printResult();
+                eqLast = true;
             }
             //If any exception is thrown from the ML library, calculator will print error
             catch (Exception)
@@ -333,7 +329,7 @@ namespace Calculator
                 return;
             }
             //If Error isnt displayed number is converted from txtNumBox
-            else
+            else if (!opLast)
             {
                 firstNum = Convert.ToDecimal(txtNumBox.Text);
                 labelSet(false, txtNumBox.Text);
@@ -524,9 +520,10 @@ namespace Calculator
         {
             if (commaLast)
             {
-                txtNumBox.Text += "0";
+                txtNumBox.Text = txtNumBox.Text.Remove(txtNumBox.Text.Length - 1);
                 commaLast = false;
             }
+
         }
         private void help_Click(object sender, EventArgs e)
         {
