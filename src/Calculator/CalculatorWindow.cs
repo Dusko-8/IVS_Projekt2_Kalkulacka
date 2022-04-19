@@ -459,7 +459,12 @@ namespace Calculator
         /// <param name="e"></param>
         private void btnFct_click(object sender, EventArgs e)
         {
-
+            //If user is chaining operations, they will be calculated first, then the factorial will be done
+            if (operatorStr != "" && operatorStr != "!")
+            {
+                labelSet(true, operatorStr);
+                printResult();
+            }
             commaCheck();
             //Button press wont work until there is Error message displayed
             if (txtNumBox.Text == "Error")
