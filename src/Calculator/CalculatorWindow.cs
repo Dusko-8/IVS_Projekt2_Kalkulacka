@@ -14,21 +14,26 @@ namespace Calculator
         /// true - txtNumBox needs to be cleared
         /// </summary>
         bool lineClear = true;
+
         /// <summary>
         /// true - last pressed button is equation
         /// </summary>
         bool eqLast = false;
+
         /// <summary>
         /// true - last pressed button is operation button
         /// </summary>
         bool opLast = false;
+
         /// <summary>
         /// true - txtTrackBox needs to be cleared
         /// </summary>
         bool trackClear = false;
+
         /// <summary>
         /// true - if basic operation button is pressed, 0 is added after the comma
         /// </summary>
+        /// 
         bool commaLast = false;
         decimal firstNum = 0;
         decimal secNum = 0;
@@ -79,17 +84,26 @@ namespace Calculator
         /// <param name="e"></param>
         private void insertNum_Click(object sender, EventArgs e)
         {
+
             Button opButton = (Button)sender;
-            // clears line for new input
-            if (lineClear)
+
+            if (lineClear) // clears line for new input
             {
                 txtNumBox.Clear();
                 lineClear = false;
             }
-            txtNumBox.Text += opButton.Text;
-            opLast = false;
-            //clears track box, before new calculation
-            if (trackClear)
+
+            if(!commaLast && opButton.Text == "0" && txtNumBox.Text == "0") //Prevents spamming 0
+            {
+                return;
+            }
+            else
+            {
+                txtNumBox.Text += opButton.Text;
+                opLast = false;
+            }
+            
+            if (trackClear) //clears track box, before new calculation
             {
                 txtBoxTrack.Clear();
                 trackClear = false;
@@ -235,7 +249,7 @@ namespace Calculator
         /// Function is used for calculations, using Mathematical library
         /// </summary>
         /// <param name="firstNum">first number of operation</param>
-        /// <param name="secNum">second number of operation</param>
+        /// <param name="secNum">second number of operation (can be null if not needed)</param>
         /// <param name="operatorStr">operation operator</param>
         private void computeRes(decimal firstNum, decimal? secNum, string operatorStr)
         {
@@ -276,26 +290,24 @@ namespace Calculator
         /// <param name="e"></param>
         private void btnFct_click(object sender, EventArgs e)
         {
-
-            //If user is chaining operations, they will be calculated first, then the factorial will be done
-            if (operationCount > 1)
+            if (operationCount > 1) //If user is chaining operations, they will be calculated first, then the factorial will be done
             {
                 labelSet(true, operatorStr);
                 printResult();
             }
             commaCheck();
-            //Button press wont work until there is Error message displayed
-            if (txtNumBox.Text == "Error")
+
+            if (txtNumBox.Text == "Error") //Button press wont work until there is Error message displayed
             {
                 return;
             }
-            //If Error isnt displayed number is converted from txtNumBox
-            else
+
+            else //If Error isnt displayed number is converted from txtNumBox
             {
                 firstNum = Convert.ToDecimal(txtNumBox.Text);
             }
-            //Prevents doing factorial of 0
-            if (firstNum == 0)
+
+            if (firstNum == 0) //Prevents doing factorial of 0
             {
                 lineClear = true;
                 return;
@@ -308,8 +320,8 @@ namespace Calculator
                 printResult();
                 eqLast = true;
             }
-            //If any exception is thrown from the ML library, calculator will print error
-            catch (Exception)
+
+            catch (Exception) //If any exception is thrown from the ML library, calculator will print error
             {
                 printError();
             }
@@ -323,13 +335,13 @@ namespace Calculator
         private void mod_click(object sender, EventArgs e)
         {
             commaCheck();
-            //Button press wont work until there is Error message displayed
-            if (txtNumBox.Text == "Error")
+
+            if (txtNumBox.Text == "Error") //Button press wont work until there is Error message displayed
             {
                 return;
             }
-            //If Error isnt displayed number is converted from txtNumBox
-            else if (!opLast)
+
+            else if (!opLast) //If Error isnt displayed number is converted from txtNumBox
             {
                 firstNum = Convert.ToDecimal(txtNumBox.Text);
                 labelSet(false, txtNumBox.Text);
@@ -347,27 +359,34 @@ namespace Calculator
         /// <param name="e"></param>
         private void power_click(object sender, EventArgs e)
         {
-            if (operationCount > 1)
+            if (!opLast)
             {
-                labelSet(true, operatorStr);
-                printResult();
+                if (operationCount > 1)
+                {
+                    labelSet(true, operatorStr);
+                    printResult();
+                }
+                commaCheck();
+
+                if (txtNumBox.Text == "Error") //Button press wont work until there is Error message displayed
+                {
+                    return;
+                }
+
+                else //If Error isnt displayed number is converted from txtNumBox
+                {
+                    if (operationCount == 0)
+                    {
+                        firstNum = Convert.ToDecimal(txtNumBox.Text);
+                    };
+                    labelSet(false, txtNumBox.Text);
+                    operatorStr = "^";
+                    labelSet(false, operatorStr);
+                    opLast = true;
+                    lineClear = true;
+                }
             }
-            commaCheck();
-            //Button press wont work until there is Error message displayed
-            if (txtNumBox.Text == "Error")
-            {
-                return;
-            }
-            //If Error isnt displayed number is converted from txtNumBox
-            else
-            {
-                firstNum = Convert.ToDecimal(txtNumBox.Text);
-                labelSet(false, txtNumBox.Text);
-                operatorStr = "^";
-                labelSet(true, operatorStr);
-                opLast = true;
-                lineClear = true;
-            }
+
 
         }
 
@@ -378,30 +397,33 @@ namespace Calculator
         /// <param name="e"></param>
         private void root_click(object sender, EventArgs e)
         {
-            if (operationCount > 1)
+            if (!opLast)
             {
-                labelSet(true, operatorStr);
-                printResult();
-            }
-            commaCheck();
-            //Button press wont work until there is Error message displayed
-            if (txtNumBox.Text == "Error")
-            {
-                return;
-            }
-            //If Error isnt displayed number is converted from txtNumBox
-            else
-            {
-
-                if (operationCount == 0)
+                if (operationCount > 1)
                 {
-                    firstNum = Convert.ToDecimal(txtNumBox.Text);
+                    labelSet(true, operatorStr);
+                    printResult();
                 }
-                operatorStr = "√";
-                //Console.WriteLine(firstNum);
-                labelSet(true, operatorStr + firstNum);
-                opLast = true;
-                lineClear = true;
+                commaCheck();
+
+                if (txtNumBox.Text == "Error") //Button press wont work until there is Error message displayed
+                {
+                    return;
+                }
+
+                else //If Error isnt displayed number is converted from txtNumBox
+                {
+
+                    if (operationCount == 0)
+                    {
+                        firstNum = Convert.ToDecimal(txtNumBox.Text);
+                    }
+                    operatorStr = "√";
+                    labelSet(true, operatorStr + firstNum);
+                    opLast = true;
+                    eqLast = false;
+                    lineClear = true;
+                }
             }
         }
 
@@ -482,8 +504,8 @@ namespace Calculator
         /// </summary>
         private void printResult()
         {
-            //Formatting of special prints
-            switch (operatorStr)
+
+            switch (operatorStr) //Formatting of special prints
             {
                 case "√":
                     txtBoxTrack.Clear();
