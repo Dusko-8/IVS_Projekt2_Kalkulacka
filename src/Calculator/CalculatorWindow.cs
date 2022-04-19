@@ -448,6 +448,12 @@ namespace Calculator
                 case "!":
                     result = ML.factorial(firstNum);
                     break;
+                case "^":
+                    result = ML.power(firstNum, (decimal)secNum);
+                    break;
+                case "√":
+                    result = ML.root(firstNum, (decimal)secNum);
+                    break;
             }
             
         }
@@ -527,9 +533,49 @@ namespace Calculator
         /// <param name="e"></param>
         private void power_click(object sender, EventArgs e)
         {
+            commaCheck();
+            //Button press wont work until there is Error message displayed
+            if (txtNumBox.Text == "Error")
+            {
+                return;
+            }
+            //If Error isnt displayed number is converted from txtNumBox
+            else
+            {
+                firstNum = Convert.ToDecimal(txtNumBox.Text);
+                labelSet(false, txtNumBox.Text);
+                operatorStr = "^";
+                labelSet(true, operatorStr);
+                opLast = true;
+                lineClear = true;
+            }
 
         }
-        
+        /// <summary>
+        /// Fuction handling root of number
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void root_click(object sender, EventArgs e)
+        {
+            commaCheck();
+            //Button press wont work until there is Error message displayed
+            if (txtNumBox.Text == "Error")
+            {
+                return;
+            }
+            //If Error isnt displayed number is converted from txtNumBox
+            else
+            {
+                firstNum = Convert.ToDecimal(txtNumBox.Text);
+                labelSet(false, txtNumBox.Text);
+                operatorStr = "√";
+                labelSet(true, operatorStr);
+                opLast = true;
+                lineClear = true;
+            }
+        }
+
         /// <summary>
         /// Fuction handling "=" button click
         /// </summary>
@@ -564,6 +610,26 @@ namespace Calculator
                         }
                         break;
                     case "%":
+                        try
+                        {
+                            printResult();
+                        }
+                        catch (Exception)
+                        {
+                            printError();
+                        }
+                        break;
+                    case "^":
+                        try
+                        {
+                            printResult();
+                        }
+                        catch (Exception)
+                        {
+                            printError();
+                        }
+                        break;
+                    case "√":
                         try
                         {
                             printResult();
