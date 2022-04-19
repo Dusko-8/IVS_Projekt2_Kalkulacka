@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,14 +9,34 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MathematicaLibraryIVS;
 
+//known bugs:
+//1. po stlaceni klavesy a naslednom drzani enter sa spamuje cislo
+//2. nadvazuje na 1. -> po zaspamovani a naslednom stlaceni znamienka padne calc
+
 namespace Calculator
 {
     public partial class CalculatorWindow : Form
     {
-        bool lineClear = true; // true - txtNumBox needs to be cleared
-        bool eqLast = false; // true - last pressed button is equation
-        bool opLast = false; // true - last pressed button is operation button
-        bool trackClear = false; // true - txtTrackBox needs to be cleared
+        /// <summary>
+        /// true - txtNumBox needs to be cleared
+        /// </summary>
+        bool lineClear = true;
+        /// <summary>
+        /// true - last pressed button is equation
+        /// </summary>
+        bool eqLast = false;
+        /// <summary>
+        /// true - last pressed button is operation button
+        /// </summary>
+        bool opLast = false;
+        /// <summary>
+        /// true - txtTrackBox needs to be cleared
+        /// </summary>
+        bool trackClear = false;
+        /// <summary>
+        /// true - if basic operation button is pressed, 0 is added after the comma
+        /// </summary>
+        bool commaLast = false;
         decimal firstNum = 0;
         decimal secNum = 0;
         decimal result = 0;
@@ -28,16 +48,34 @@ namespace Calculator
         }
 
         /// <summary>
+        /// Function for printing Error, resets firstNumber, operatorStr and operationCount, sets clearing for txtNumbox, clears txtTrackBox
+        /// </summary>
+        private void printError()
+        {
+            txtNumBox.Text = "Error";
+            firstNum = 0;
+            lineClear = true;
+            txtBoxTrack.Clear();
+            operationCount = 0;
+            operatorStr = "";
+        }
+
+        /// <summary>
         /// Event click method that prints comma into textbox
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void insertComma_Click(object sender, EventArgs e)
         {
+            if (txtNumBox.Text == "Error")
+            {
+                return;
+            }
             if (!txtNumBox.Text.Contains(","))
             {
+                commaLast = true;
                 txtNumBox.Text += ",";
-                lineClear = false; 
+                lineClear = false;
             }
         }
 
@@ -46,15 +84,16 @@ namespace Calculator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void insert1_Click(object sender, EventArgs e)
+        private void insertNum_Click(object sender, EventArgs e)
         {
+            Button opButton = (Button)sender;
             // clears line for new input
             if (lineClear)
             {
                 txtNumBox.Clear();
                 lineClear = false;
             }
-            txtNumBox.Text += "1";
+            txtNumBox.Text += opButton.Text;
             opLast = false;
             //clears track box, before new calculation
             if (trackClear)
@@ -68,6 +107,8 @@ namespace Calculator
                 eqLast = false;
             }
         }
+
+        /* zakomentovane pre istotu, funkcia vyssie je globalne na vsetky cisla
         private void insert2_click(object sender, EventArgs e)
         {
             if (lineClear)
@@ -248,6 +289,8 @@ namespace Calculator
             }
         }
 
+        */
+
         /// <summary>
         /// Function clears txtNumBox and sets its value to 0
         /// </summary>
@@ -264,7 +307,7 @@ namespace Calculator
         }
 
         /// <summary>
-        /// Function clears, result box, track box, result and numbers
+        /// Function clears result box, track box, result and numbers
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -290,7 +333,12 @@ namespace Calculator
             Button opButton = (Button)sender;
             if (!opLast)
             {
-                if (firstNum == 0) //first operation
+                if (txtNumBox.Text == "Error")
+                {
+                    return;
+                }
+                commaCheck();
+                if (firstNum == 0 && operationCount == 0) //first operation
                 {
                     firstNum = Convert.ToDecimal(txtNumBox.Text);
                     labelSet(false, txtNumBox.Text);
@@ -312,24 +360,38 @@ namespace Calculator
                     operationCount++;
                     opLast = true;
                 }
-                else 
+                else
                 {
                     operationCount++;
                     if (operationCount >= 3) // chaining 3 or more operation
                     {
                         secNum = Convert.ToDecimal(txtNumBox.Text);
-                        computeRes(result, Convert.ToDecimal(txtNumBox.Text), operatorStr);
+                        computeRes(result, secNum, operatorStr);
+
                         labelSet(true, operatorStr);
                         labelSet(false, secNum.ToString());
-                        operatorStr = opButton.Text;
+
+                        operatorStr = opButton.Text; //funguje aj bez tohoto
+
+                        opLast = true;
+
                         firstNum = result;
+                        //printing the result
+                        txtNumBox.Text = result.ToString();   
                     }
                     else // chaining two operations
                     {
                         labelSet(false, txtNumBox.Text);
+
                         computeRes(firstNum, Convert.ToDecimal(txtNumBox.Text), operatorStr);
+
                         operatorStr = opButton.Text;
+
+                        opLast = true;
+
                         firstNum = result;
+                        //printing the result
+                        txtNumBox.Text = result.ToString();
                     }
                     lineClear = true;
                 }
@@ -346,7 +408,7 @@ namespace Calculator
         {
             if (!type)
             {
-                if(txtBoxTrack.Text == "0")
+                if (txtBoxTrack.Text == "0")
                 {
                     txtBoxTrack.Text = "";
                 }
@@ -364,42 +426,110 @@ namespace Calculator
         /// <param name="firstNum">first number of operation</param>
         /// <param name="secNum">second number of operation</param>
         /// <param name="operatorStr">operation operator</param>
-        private void computeRes(decimal firstNum, decimal secNum, string operatorStr)
+        private void computeRes(decimal firstNum, decimal? secNum, string operatorStr)
         {
             switch (operatorStr)
             {
                 case "+":
-                    result = ML.plus(firstNum, secNum);
+                    result = ML.plus(firstNum, (decimal)secNum);
                     break;
                 case "-":
-                    if(secNum != 0)
-                    {
-                        result = ML.minus(firstNum, secNum);
-                        txtNumBox.Text = result.ToString();
-                        operatorStr = "";
-                        lineClear = true;
-                    }
-                    else
-                    {
-                        btnCE.PerformClick();
-                        txtNumBox.Text = "Chyba";
-                    }
+                    result = ML.minus(firstNum, (decimal)secNum);
                     break;
-                case "×": 
-                    result = ML.multiply(firstNum, secNum);
+                case "×":
+                    result = ML.multiply(firstNum, (decimal)secNum);
                     break;
                 case "÷":
-                    result = ML.divide(firstNum, secNum);
+                    result = ML.divide(firstNum, (decimal)secNum);
+                    break;
+                case "%":
+                    result = ML.modulo(firstNum, (decimal)secNum);
+                    break;
+                case "!":
+                    result = ML.factorial(firstNum);
                     break;
             }
-            if(operatorStr != "-")
+            
+        }
+
+        /// <summary>
+        /// Fuction handling factorial of number
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFct_click(object sender, EventArgs e)
+        {
+            //If user is chaining operations, they will be calculated first, then the factorial will be done
+            if (operatorStr != "" && operatorStr != "!")
             {
-                txtNumBox.Text = result.ToString();
-                operatorStr = "";
+                labelSet(true, operatorStr);
+                printResult();
+            }
+            commaCheck();
+            //Button press wont work until there is Error message displayed
+            if (txtNumBox.Text == "Error")
+            {
+                return;
+            }
+            //If Error isnt displayed number is converted from txtNumBox
+            else
+            {
+                firstNum = Convert.ToDecimal(txtNumBox.Text);
+            }
+            //Prevents doing factorial of 0
+            if (firstNum == 0)
+            {
                 lineClear = true;
+                return;
+            }
+            try
+            {
+                operatorStr = "!";
+                labelSet(false, txtNumBox.Text + operatorStr);
+                printResult();
+            }
+            //If any exception is thrown from the ML library, calculator will print error
+            catch (Exception)
+            {
+                printError();
             }
         }
 
+        /// <summary>
+        /// Function handling modulo of number
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mod_click(object sender, EventArgs e)
+        {
+            commaCheck();
+            //Button press wont work until there is Error message displayed
+            if (txtNumBox.Text == "Error")
+            {
+                return;
+            }
+            //If Error isnt displayed number is converted from txtNumBox
+            else
+            {
+                firstNum = Convert.ToDecimal(txtNumBox.Text);
+                labelSet(false, txtNumBox.Text);
+                operatorStr = "%";
+                labelSet(true, operatorStr);
+                opLast = true;
+                lineClear=true;
+            }
+        }
+
+        /// <summary>
+        /// Fuction handling power of number
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void power_click(object sender, EventArgs e)
+        {
+
+        }
+        
         /// <summary>
         /// Fuction handling "=" button click
         /// </summary>
@@ -407,34 +537,78 @@ namespace Calculator
         /// <param name="e"></param>
         private void eql_click(object sender, EventArgs e)
         {
-            if (!opLast)
+            if (!opLast && !eqLast)
             {
-                if (operatorStr != "sqr" && operatorStr != "fact" && operatorStr != "sqrt")
+                switch (operatorStr)
                 {
-                    if (firstNum != 0)
-                    {
-                        if (operationCount >= 2)
+                    case "+":
+                    case "-":
+                    case "×":
+                    case "÷":
+                        if (operationCount >= 1)
                         {
-                            labelSet(true, operatorStr);
+                            if (operationCount >= 2)
+                            {
+                                labelSet(true, operatorStr);
+                            }
+                            try
+                            {
+                                printResult();
+
+                            }
+                            catch (Exception)
+                            {
+                                printError();
+                            }
+
                         }
-                        labelSet(false, txtNumBox.Text);
-                        secNum = Convert.ToDecimal(txtNumBox.Text);
-                        labelSet(true, "=");
-                        computeRes(firstNum, secNum, operatorStr);
-                        trackClear = true;
-                        operatorStr = "";
-                        operationCount = 0;
-                        eqLast = true;
-                        firstNum = result;
-                    }
-                }
-                else
-                {
-                    //TODO pre zvysne funkcie
+                        break;
+                    case "%":
+                        try
+                        {
+                            printResult();
+                        }
+                        catch (Exception)
+                        {
+                            printError();
+                        }
+                        break;
                 }
             }
         }
-
+        
+        /// <summary>
+        /// Function for printing result
+        /// </summary>
+        private void printResult()
+        {
+            //Without this condition, the number left in the txtNumBox would be printed behind the factorial in the txtTrackBox
+            if (operatorStr != "!")
+            {
+                labelSet(false, txtNumBox.Text);
+            }
+            labelSet(true, "=");
+            computeRes(firstNum, Convert.ToDecimal(txtNumBox.Text), operatorStr);
+            trackClear = true;
+            operatorStr = "";
+            operationCount = 0;
+            eqLast = true;
+            lineClear = true;
+            firstNum = result;
+            txtNumBox.Text = result.ToString();
+        }
+        
+        /// <summary>
+        /// Function for checking if the last input character before operation was a comma
+        /// </summary>
+        private void commaCheck()
+        {
+            if (commaLast)
+            {
+                txtNumBox.Text += "0";
+                commaLast = false;
+            }
+        }
         private void help_Click(object sender, EventArgs e)
         {
             //TODO help
