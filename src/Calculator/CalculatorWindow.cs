@@ -93,7 +93,7 @@ namespace Calculator
                 lineClear = false;
             }
 
-            if(!commaLast && opButton.Text == "0" && txtNumBox.Text == "0") //Prevents spamming 0
+            if (!commaLast && opButton.Text == "0" && txtNumBox.Text == "0") //Prevents spamming 0
             {
                 return;
             }
@@ -102,7 +102,7 @@ namespace Calculator
                 txtNumBox.Text += opButton.Text;
                 opLast = false;
             }
-            
+
             if (trackClear) //clears track box, before new calculation
             {
                 txtBoxTrack.Clear();
@@ -290,7 +290,7 @@ namespace Calculator
         /// <param name="e"></param>
         private void btnFct_click(object sender, EventArgs e)
         {
-            if (operationCount > 1) //If user is chaining operations, they will be calculated first, then the factorial will be done
+            if (operationCount > 0) //If user is chaining operations, they will be calculated first, then the factorial will be done
             {
                 labelSet(true, operatorStr);
                 printResult();
@@ -319,6 +319,7 @@ namespace Calculator
                 labelSet(false, txtNumBox.Text + operatorStr);
                 printResult();
                 eqLast = true;
+                operationCount++;
             }
 
             catch (Exception) //If any exception is thrown from the ML library, calculator will print error
@@ -334,21 +335,32 @@ namespace Calculator
         /// <param name="e"></param>
         private void mod_click(object sender, EventArgs e)
         {
-            commaCheck();
-
-            if (txtNumBox.Text == "Error") //Button press wont work until there is Error message displayed
+            if (!opLast)
             {
-                return;
-            }
+                if (operationCount > 0)
+                {
+                    labelSet(true, operatorStr);
+                    printResult();
+                }
+                commaCheck();
 
-            else if (!opLast) //If Error isnt displayed number is converted from txtNumBox
-            {
-                firstNum = Convert.ToDecimal(txtNumBox.Text);
-                labelSet(false, txtNumBox.Text);
-                operatorStr = "%";
-                labelSet(true, operatorStr);
-                opLast = true;
-                lineClear = true;
+                if (txtNumBox.Text == "Error") //Button press wont work until there is Error message displayed
+                {
+                    return;
+                }
+                else
+                {
+                    if (operationCount == 0)
+                    {
+                        firstNum = Convert.ToDecimal(txtNumBox.Text);
+                    }
+                    labelSet(false, txtNumBox.Text);
+                    operatorStr = "%";
+                    labelSet(true, operatorStr);
+                    opLast = true;
+                    lineClear = true;
+                    operationCount++;
+                }
             }
         }
 
@@ -361,7 +373,7 @@ namespace Calculator
         {
             if (!opLast)
             {
-                if (operationCount > 1)
+                if (operationCount > 0)
                 {
                     labelSet(true, operatorStr);
                     printResult();
@@ -372,17 +384,17 @@ namespace Calculator
                 {
                     return;
                 }
-
                 else //If Error isnt displayed number is converted from txtNumBox
                 {
                     if (operationCount == 0)
                     {
                         firstNum = Convert.ToDecimal(txtNumBox.Text);
-                    };
+                    }
                     labelSet(false, txtNumBox.Text);
                     operatorStr = "^";
                     labelSet(false, operatorStr);
                     opLast = true;
+                    operationCount++;
                     lineClear = true;
                 }
             }
@@ -399,7 +411,7 @@ namespace Calculator
         {
             if (!opLast)
             {
-                if (operationCount > 1)
+                if (operationCount > 0)
                 {
                     labelSet(true, operatorStr);
                     printResult();
@@ -423,6 +435,7 @@ namespace Calculator
                     opLast = true;
                     eqLast = false;
                     lineClear = true;
+                    operationCount++;
                 }
             }
         }
@@ -512,12 +525,16 @@ namespace Calculator
                     labelSet(false, txtNumBox.Text + operatorStr + firstNum);
                     break;
                 case "^":
-                    txtBoxTrack.Clear();
+                    txtBoxTrack.Clear(); 
                     labelSet(false, firstNum + operatorStr + txtNumBox.Text);
                     break;
                 case "!":
                     txtBoxTrack.Clear();
                     labelSet(false, firstNum + operatorStr);
+                    break;
+                case "%":
+                    txtBoxTrack.Clear();
+                    labelSet(false, firstNum + operatorStr + txtNumBox.Text);
                     break;
                 default:
                     labelSet(false, txtNumBox.Text);
