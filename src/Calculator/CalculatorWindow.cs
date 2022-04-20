@@ -2,6 +2,7 @@
 using System;
 using System.Windows.Forms;
 
+
 //known bugs:
 //1. po stlaceni klavesy a naslednom drzani enter sa spamuje cislo
 //2. nadvazuje na 1. -> po zaspamovani a naslednom stlaceni znamienka padne calc
@@ -525,7 +526,7 @@ namespace Calculator
                     labelSet(false, txtNumBox.Text + operatorStr + firstNum);
                     break;
                 case "^":
-                    txtBoxTrack.Clear(); 
+                    txtBoxTrack.Clear();
                     labelSet(false, firstNum + operatorStr + txtNumBox.Text);
                     break;
                 case "!":
@@ -568,5 +569,67 @@ namespace Calculator
         {
             //TODO help
         }
+
+        /// <summary>
+        /// Function handling key presses on keyboard
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CalculatorWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            switch (e.KeyCode)
+            {
+                case Keys.NumPad0:
+                    btn0.PerformClick();
+                    break;
+                case Keys.NumPad1:
+                    btn1.PerformClick();
+                    break;
+                case Keys.NumPad2:
+                    btn2.PerformClick();
+                    break;
+                case Keys.NumPad3:
+                    btn3.PerformClick();
+                    break;
+                case Keys.NumPad4:
+                    btn4.PerformClick();
+                    break;
+                case Keys.NumPad5:
+                    btn5.PerformClick();
+                    break;
+                case Keys.NumPad6:
+                    btn6.PerformClick();
+                    break;
+                case Keys.NumPad7:
+                    btn7.PerformClick();
+                    break;
+                case Keys.NumPad8:
+                    btn8.PerformClick();
+                    break;
+                case Keys.NumPad9:
+                    btn9.PerformClick();
+                    break;
+                case Keys.Add:
+                    btnAdd.PerformClick();
+                    break;
+                case Keys.Subtract:
+                    btnMin.PerformClick();
+                    break;
+                case Keys.Multiply:
+                    btnMul.PerformClick();
+                    break;
+                case Keys.Divide:
+                    btnDiv.PerformClick();
+                    break;
+                case Keys.Decimal:
+                    btnComma.PerformClick();
+                    break;
+
+
+            }
+        }
+
+
     }
 }
