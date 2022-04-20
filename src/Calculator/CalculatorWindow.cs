@@ -1,13 +1,6 @@
-﻿﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MathematicaLibraryIVS;
+using System;
 using System.Windows.Forms;
-using MathematicaLibraryIVS;
 
 //known bugs:
 //1. po stlaceni klavesy a naslednom drzani enter sa spamuje cislo
@@ -21,21 +14,26 @@ namespace Calculator
         /// true - txtNumBox needs to be cleared
         /// </summary>
         bool lineClear = true;
+
         /// <summary>
         /// true - last pressed button is equation
         /// </summary>
         bool eqLast = false;
+
         /// <summary>
         /// true - last pressed button is operation button
         /// </summary>
         bool opLast = false;
+
         /// <summary>
         /// true - txtTrackBox needs to be cleared
         /// </summary>
         bool trackClear = false;
+
         /// <summary>
         /// true - if basic operation button is pressed, 0 is added after the comma
         /// </summary>
+        /// 
         bool commaLast = false;
         decimal firstNum = 0;
         decimal secNum = 0;
@@ -86,210 +84,37 @@ namespace Calculator
         /// <param name="e"></param>
         private void insertNum_Click(object sender, EventArgs e)
         {
+
             Button opButton = (Button)sender;
-            // clears line for new input
-            if (lineClear)
-            {
-                txtNumBox.Clear();
-                lineClear = false;
-            }
-            txtNumBox.Text += opButton.Text;
-            opLast = false;
-            //clears track box, before new calculation
-            if (trackClear)
-            {
-                txtBoxTrack.Clear();
-                trackClear = false;
-            }
-            if (eqLast)
-            {
-                firstNum = 0;
-                eqLast = false;
-            }
-        }
 
-        /* zakomentovane pre istotu, funkcia vyssie je globalne na vsetky cisla
-        private void insert2_click(object sender, EventArgs e)
-        {
-            if (lineClear)
+            if (lineClear) // clears line for new input
             {
                 txtNumBox.Clear();
                 lineClear = false;
             }
-            txtNumBox.Text += "2";
-            opLast = false;
-            if (trackClear)
-            {
-                txtBoxTrack.Clear();
-                trackClear = false;
-            }
-            if (eqLast)
-            {
-                firstNum = 0;
-                eqLast = false;
-            }
-        }
-        private void insert3_click(object sender, EventArgs e)
-        {
-            if (lineClear)
-            {
-                txtNumBox.Clear();
-                lineClear = false;
-            }
-            txtNumBox.Text += "3";
-            opLast = false;
-            if (trackClear)
-            {
-                txtBoxTrack.Clear();
-                trackClear = false;
-            }
-            if (eqLast)
-            {
-                firstNum = 0;
-                eqLast = false;
-            }
-        }
-        private void insert4_click(object sender, EventArgs e)
-        {
-            if (lineClear)
-            {
-                txtNumBox.Clear();
-                lineClear = false;
-            }
-            txtNumBox.Text += "4";
-            opLast = false;
-            if (trackClear)
-            {
-                txtBoxTrack.Clear();
-                trackClear = false;
-            }
-            if (eqLast)
-            {
-                firstNum = 0;
-                eqLast = false;
-            }
-        }
-        private void insert5_click(object sender, EventArgs e)
-        {
-            if (lineClear)
-            {
-                txtNumBox.Clear();
-                lineClear = false;
-            }
-            txtNumBox.Text += "5";
-            opLast = false;
-            if (trackClear)
-            {
-                txtBoxTrack.Clear();
-                trackClear = false;
-            }
-            if (eqLast)
-            {
-                firstNum = 0;
-                eqLast = false;
-            }
-        }
-        private void insert6_click(object sender, EventArgs e)
-        {
-            if (lineClear)
-            {
-                txtNumBox.Clear();
-                lineClear = false;
-            }
-            txtNumBox.Text += "6";
-            opLast = false;
-            if (trackClear)
-            {
-                txtBoxTrack.Clear();
-                trackClear = false;
-            }
-            if (eqLast)
-            {
-                firstNum = 0;
-                eqLast = false;
-            }
-        }
-        private void insert7_click(object sender, EventArgs e)
-        {
-            if (lineClear)
-            {
-                txtNumBox.Clear();
-                lineClear = false;
-            }
-            txtNumBox.Text += "7";
-            opLast = false;
 
-            if (trackClear)
+            if (!commaLast && opButton.Text == "0" && txtNumBox.Text == "0") //Prevents spamming 0
             {
-                txtBoxTrack.Clear();
-                trackClear = false;
+                return;
             }
-            if (eqLast)
+            else
             {
-                firstNum = 0;
-                eqLast= false;
-            }
-        }
-        private void insert8_click(object sender, EventArgs e)
-        {
-            if (lineClear)
-            {
-                txtNumBox.Clear();
-                lineClear = false;
-            }
-            txtNumBox.Text += "8";
-            opLast = false;
-            if (trackClear)
-            {
-                txtBoxTrack.Clear();
-                trackClear = false;
-            }
-            if (eqLast)
-            {
-                firstNum = 0;
-                eqLast = false;
-            }
-        }
-        private void insert9_click(object sender, EventArgs e)
-        {
-            if (lineClear)
-            {
-                txtNumBox.Clear();
-                lineClear = false;
-            }
-            txtNumBox.Text += "9";
-            opLast = false;
-            if (trackClear)
-            {
-                txtBoxTrack.Clear();
-            }
-            if (eqLast)
-            {
-                firstNum = 0;
-                eqLast = false;
-            }
-        }
-        private void insert0_click(object sender, EventArgs e)
-        {
-            if (!lineClear)
-            {
-                txtNumBox.Text += "0";
+                txtNumBox.Text += opButton.Text;
                 opLast = false;
-            }else if(lineClear && result != 0)
-            {
-                txtNumBox.Clear();
-                txtNumBox.Text += "0";
-                lineClear = false;
             }
 
-            if (trackClear)
+            if (trackClear) //clears track box, before new calculation
             {
                 txtBoxTrack.Clear();
                 trackClear = false;
             }
+            if (eqLast)
+            {
+                firstNum = 0;
+                eqLast = false;
+            }
+            commaLast = false;
         }
-
-        */
 
         /// <summary>
         /// Function clears txtNumBox and sets its value to 0
@@ -377,7 +202,7 @@ namespace Calculator
 
                         firstNum = result;
                         //printing the result
-                        txtNumBox.Text = result.ToString();   
+                        txtNumBox.Text = result.ToString();
                     }
                     else // chaining two operations
                     {
@@ -424,7 +249,7 @@ namespace Calculator
         /// Function is used for calculations, using Mathematical library
         /// </summary>
         /// <param name="firstNum">first number of operation</param>
-        /// <param name="secNum">second number of operation</param>
+        /// <param name="secNum">second number of operation (can be null if not needed)</param>
         /// <param name="operatorStr">operation operator</param>
         private void computeRes(decimal firstNum, decimal? secNum, string operatorStr)
         {
@@ -448,8 +273,14 @@ namespace Calculator
                 case "!":
                     result = ML.factorial(firstNum);
                     break;
+                case "^":
+                    result = ML.power(firstNum, (decimal)secNum);
+                    break;
+                case "√":
+                    result = ML.root(firstNum, (decimal)secNum);
+                    break;
             }
-            
+
         }
 
         /// <summary>
@@ -459,37 +290,39 @@ namespace Calculator
         /// <param name="e"></param>
         private void btnFct_click(object sender, EventArgs e)
         {
-            //If user is chaining operations, they will be calculated first, then the factorial will be done
-            if (operatorStr != "" && operatorStr != "!")
+            if (operationCount > 0) //If user is chaining operations, they will be calculated first, then the factorial will be done
             {
                 labelSet(true, operatorStr);
                 printResult();
             }
             commaCheck();
-            //Button press wont work until there is Error message displayed
-            if (txtNumBox.Text == "Error")
+
+            if (txtNumBox.Text == "Error") //Button press wont work until there is Error message displayed
             {
                 return;
             }
-            //If Error isnt displayed number is converted from txtNumBox
-            else
+
+            else //If Error isnt displayed number is converted from txtNumBox
             {
                 firstNum = Convert.ToDecimal(txtNumBox.Text);
             }
-            //Prevents doing factorial of 0
-            if (firstNum == 0)
+
+            if (firstNum == 0) //Prevents doing factorial of 0
             {
                 lineClear = true;
                 return;
             }
+
             try
             {
                 operatorStr = "!";
                 labelSet(false, txtNumBox.Text + operatorStr);
                 printResult();
+                eqLast = true;
+                operationCount++;
             }
-            //If any exception is thrown from the ML library, calculator will print error
-            catch (Exception)
+
+            catch (Exception) //If any exception is thrown from the ML library, calculator will print error
             {
                 printError();
             }
@@ -502,21 +335,32 @@ namespace Calculator
         /// <param name="e"></param>
         private void mod_click(object sender, EventArgs e)
         {
-            commaCheck();
-            //Button press wont work until there is Error message displayed
-            if (txtNumBox.Text == "Error")
+            if (!opLast)
             {
-                return;
-            }
-            //If Error isnt displayed number is converted from txtNumBox
-            else
-            {
-                firstNum = Convert.ToDecimal(txtNumBox.Text);
-                labelSet(false, txtNumBox.Text);
-                operatorStr = "%";
-                labelSet(true, operatorStr);
-                opLast = true;
-                lineClear=true;
+                if (operationCount > 0)
+                {
+                    labelSet(true, operatorStr);
+                    printResult();
+                }
+                commaCheck();
+
+                if (txtNumBox.Text == "Error") //Button press wont work until there is Error message displayed
+                {
+                    return;
+                }
+                else
+                {
+                    if (operationCount == 0)
+                    {
+                        firstNum = Convert.ToDecimal(txtNumBox.Text);
+                    }
+                    labelSet(false, txtNumBox.Text);
+                    operatorStr = "%";
+                    labelSet(true, operatorStr);
+                    opLast = true;
+                    lineClear = true;
+                    operationCount++;
+                }
             }
         }
 
@@ -527,9 +371,75 @@ namespace Calculator
         /// <param name="e"></param>
         private void power_click(object sender, EventArgs e)
         {
+            if (!opLast)
+            {
+                if (operationCount > 0)
+                {
+                    labelSet(true, operatorStr);
+                    printResult();
+                }
+                commaCheck();
+
+                if (txtNumBox.Text == "Error") //Button press wont work until there is Error message displayed
+                {
+                    return;
+                }
+                else //If Error isnt displayed number is converted from txtNumBox
+                {
+                    if (operationCount == 0)
+                    {
+                        firstNum = Convert.ToDecimal(txtNumBox.Text);
+                    }
+                    labelSet(false, txtNumBox.Text);
+                    operatorStr = "^";
+                    labelSet(false, operatorStr);
+                    opLast = true;
+                    operationCount++;
+                    lineClear = true;
+                }
+            }
+
 
         }
-        
+
+        /// <summary>
+        /// Fuction handling root of number
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void root_click(object sender, EventArgs e)
+        {
+            if (!opLast)
+            {
+                if (operationCount > 0)
+                {
+                    labelSet(true, operatorStr);
+                    printResult();
+                }
+                commaCheck();
+
+                if (txtNumBox.Text == "Error") //Button press wont work until there is Error message displayed
+                {
+                    return;
+                }
+
+                else //If Error isnt displayed number is converted from txtNumBox
+                {
+
+                    if (operationCount == 0)
+                    {
+                        firstNum = Convert.ToDecimal(txtNumBox.Text);
+                    }
+                    operatorStr = "√";
+                    labelSet(true, operatorStr + firstNum);
+                    opLast = true;
+                    eqLast = false;
+                    lineClear = true;
+                    operationCount++;
+                }
+            }
+        }
+
         /// <summary>
         /// Fuction handling "=" button click
         /// </summary>
@@ -554,6 +464,7 @@ namespace Calculator
                             try
                             {
                                 printResult();
+                                eqLast = true;
 
                             }
                             catch (Exception)
@@ -567,6 +478,30 @@ namespace Calculator
                         try
                         {
                             printResult();
+                            eqLast = true;
+                        }
+                        catch (Exception)
+                        {
+                            printError();
+                        }
+                        break;
+                    case "^":
+                        try
+                        {
+                            printResult();
+                            eqLast = true;
+                        }
+                        catch (Exception)
+                        {
+                            printError();
+                        }
+                        break;
+                    case "√":
+                        try
+                        {
+
+                            printResult();
+                            eqLast = true;
                         }
                         catch (Exception)
                         {
@@ -576,28 +511,47 @@ namespace Calculator
                 }
             }
         }
-        
+
         /// <summary>
         /// Function for printing result
         /// </summary>
         private void printResult()
         {
-            //Without this condition, the number left in the txtNumBox would be printed behind the factorial in the txtTrackBox
-            if (operatorStr != "!")
+
+            switch (operatorStr) //Formatting of special prints
             {
-                labelSet(false, txtNumBox.Text);
+                case "√":
+                    txtBoxTrack.Clear();
+                    labelSet(false, txtNumBox.Text + operatorStr + firstNum);
+                    break;
+                case "^":
+                    txtBoxTrack.Clear(); 
+                    labelSet(false, firstNum + operatorStr + txtNumBox.Text);
+                    break;
+                case "!":
+                    txtBoxTrack.Clear();
+                    labelSet(false, firstNum + operatorStr);
+                    break;
+                case "%":
+                    txtBoxTrack.Clear();
+                    labelSet(false, firstNum + operatorStr + txtNumBox.Text);
+                    break;
+                default:
+                    labelSet(false, txtNumBox.Text);
+                    break;
             }
+
             labelSet(true, "=");
-            computeRes(firstNum, Convert.ToDecimal(txtNumBox.Text), operatorStr);
+            secNum = Convert.ToDecimal(txtNumBox.Text);
+            computeRes(firstNum, secNum, operatorStr);
             trackClear = true;
             operatorStr = "";
             operationCount = 0;
-            eqLast = true;
             lineClear = true;
             firstNum = result;
             txtNumBox.Text = result.ToString();
         }
-        
+
         /// <summary>
         /// Function for checking if the last input character before operation was a comma
         /// </summary>
@@ -605,9 +559,10 @@ namespace Calculator
         {
             if (commaLast)
             {
-                txtNumBox.Text += "0";
+                txtNumBox.Text = txtNumBox.Text.Remove(txtNumBox.Text.Length - 1);
                 commaLast = false;
             }
+
         }
         private void help_Click(object sender, EventArgs e)
         {
