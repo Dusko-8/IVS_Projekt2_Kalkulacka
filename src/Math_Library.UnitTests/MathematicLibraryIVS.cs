@@ -1,7 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using MathematicaLibraryIVS;
-
+/// <summary>
+/// This unit test where used for TDD developing ML (Mathematical Lybrary)
+/// </summary>
 namespace Math_Library.UnitTests
 {
     [TestClass]

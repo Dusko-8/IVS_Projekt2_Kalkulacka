@@ -4,13 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace MathematicaLibraryIVS
-{
+{   
+    /// <summary>
+    /// Mathematical lybrary build with simple functions used in calculators
+    /// </summary>
     public class ML 
-    {
+    {   /// <summary>
+        /// Constants represents highest possible number that can be reached
+        /// </summary>
         private const double abovelimit = 79228162514264337593543950335d;
         private const double belovelimit = -79228162514264337593543950335d;
+
+        /// <summary>
+        /// Adds first and second number passed as params.
+        /// </summary>
+        /// <param name="x">Number 1.</param>
+        /// <param name="y">Number 2.</param>
+        /// <returns>Sum of Number 1. plus Number 2.</returns>
+        /// <exception cref="OverflowException">If the numbers are larger than expected.</exception>
         public static decimal plus(decimal x,decimal y){
             double a = Decimal.ToDouble(x);
             double b = Decimal.ToDouble(y);
@@ -20,7 +32,13 @@ namespace MathematicaLibraryIVS
             }
             return x+y;
         }
-
+        /// <summary>
+        /// Subtructs second number from first passed as params.
+        /// </summary>
+        /// <param name="x">Number 1.</param>
+        /// <param name="y">Number 2.</param>
+        /// <returns>Sum of Number 1. minus Number 2.</returns>
+        /// <exception cref="OverflowException">If the numbers are larger than expected.</exception>
         public static decimal minus(decimal x, decimal y)
         {
             if ((Decimal.ToDouble(x - y) > abovelimit) || (Decimal.ToDouble(x - y) < belovelimit))
@@ -29,7 +47,13 @@ namespace MathematicaLibraryIVS
             }
             return x - y;
         }
-
+        /// <summary>
+        /// Multiplies first and second number passed as params.
+        /// </summary>
+        /// <param name="x">Number 1.</param>
+        /// <param name="y">Number 2.</param>
+        /// <returns>Sum of Number 1. times Number 2.</returns>
+        /// <exception cref="OverflowException">If the numbers are larger than expected.</exception>
         public static decimal multiply(decimal x, decimal y)
         {
             double a = Decimal.ToDouble(x);
@@ -41,7 +65,13 @@ namespace MathematicaLibraryIVS
 
             return x*y;
         }
-
+        /// <summary>
+        /// Devides first and second number passed as params.
+        /// </summary>
+        /// <param name="x">Number 1.</param>
+        /// <param name="y">Number 2.</param>
+        /// <returns>Sum of Number 1. devided by Number 2.</returns>
+        /// <exception cref="DivideByZeroException">If the devision is done with **0** .</exception>
         public static decimal divide(decimal x, decimal y)
         {
             if (y == 0) {
@@ -50,7 +80,13 @@ namespace MathematicaLibraryIVS
 
             return x/ y;
         }
-
+        /// <summary>
+        /// Makes factorial of given number passed in params
+        /// </summary>
+        /// <param name="x">Number 1.</param>
+        /// <returns>Factorial of Number 1.</returns>
+        /// <exception cref="Exception">If the number is not whole</exception>
+        /// <exception cref="OverflowException">If the numbers are larger than expected.</exception>
         public static decimal factorial(decimal x)
         {
 
@@ -76,7 +112,14 @@ namespace MathematicaLibraryIVS
 
             return sum;
         }
-
+        /// <summary>
+        /// Resolves to number the power of given whole number.
+        /// </summary>
+        /// <param name="number">Number 1.</param>
+        /// <param name="power">Power</param>
+        /// <returns>**Number 1.** to the power of **Power**</returns>
+        /// <exception cref="Exception"></exception>
+        /// <exception cref="OverflowException">If the numbers are larger than expected.</exception>
         public static decimal power(decimal number, decimal power)
         {
 
@@ -105,7 +148,13 @@ namespace MathematicaLibraryIVS
 
             return sum;
         }
-
+        /// <summary>
+        /// Resolves to number the root of given whole number.
+        /// </summary>
+        /// <param name="number">Number 1.</param>
+        /// <param name="root">Root</param>
+        /// <returns>**Number 1.** root of **Power**</returns>
+        /// <exception cref="Exception">If the number is negative or root is not whole.</exception>
         public static decimal root(decimal number, decimal root)
         {
             if (root % 1 != 0 && root > 0)
@@ -128,7 +177,13 @@ namespace MathematicaLibraryIVS
             return result;
 
         }
-
+        /// <summary>
+        /// Calculates the remainder after division.
+        /// </summary>
+        /// <param name="x">Number 1.</param>
+        /// <param name="y">Number 2.</param>
+        /// <returns> Remainder ofNumber 1. modulo Number 2.</returns>
+        /// <exception cref="DivideByZeroException">If the division is done by 0</exception>
         public static decimal modulo(decimal x, decimal y)
         {
 
