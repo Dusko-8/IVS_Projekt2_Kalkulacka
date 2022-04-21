@@ -630,6 +630,10 @@ namespace Calculator
             }
         }
 
-
+        private void aboutBtn_Click(object sender, EventArgs e)
+        {
+            AboutWindow About = new AboutWindow();
+            About.ShowDialog();
+        }
     }
 }
