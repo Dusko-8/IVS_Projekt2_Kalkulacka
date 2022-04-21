@@ -53,7 +53,9 @@
             this.btn0 = new System.Windows.Forms.Button();
             this.btnComma = new System.Windows.Forms.Button();
             this.txtBoxTrack = new System.Windows.Forms.TextBox();
+            this.aboutBtn = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.aboutBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -440,6 +442,16 @@
             this.txtBoxTrack.TabIndex = 28;
             this.txtBoxTrack.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // aboutBtn
+            // 
+            this.aboutBtn.Image = global::Calculator.Properties.Resources.about_btnsmol;
+            this.aboutBtn.Location = new System.Drawing.Point(33, 3);
+            this.aboutBtn.Name = "aboutBtn";
+            this.aboutBtn.Size = new System.Drawing.Size(23, 27);
+            this.aboutBtn.TabIndex = 30;
+            this.aboutBtn.TabStop = false;
+            this.aboutBtn.Click += new System.EventHandler(this.aboutBtn_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Calculator.Properties.Resources.help_image;
@@ -457,6 +469,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.ClientSize = new System.Drawing.Size(303, 400);
+            this.Controls.Add(this.aboutBtn);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtBoxTrack);
             this.Controls.Add(this.btn0);
@@ -490,6 +503,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculator";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CalculatorWindow_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.aboutBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -522,6 +536,7 @@
         private System.Windows.Forms.Button btnComma;
         private System.Windows.Forms.TextBox txtBoxTrack;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox aboutBtn;
     }
 }
 
