@@ -207,22 +207,19 @@ namespace Calculator
                     {
 
                         nextOperatorStr = opButton.Text;
-                        if(numList.Count == 1 && (nextOperatorStr == "×" || nextOperatorStr == "÷"))
+                        if (numList.Count == 1 && (nextOperatorStr == "×" || nextOperatorStr == "÷"))
                         {
-                            Console.WriteLine("nehehe");
-                            Console.WriteLine("{0}",numList[0]);
                             numList[0] = result;
                             operatorList[0] = operatorStr;
-                            numList.Add(Convert.ToDecimal(txtNumBox.Text)); 
+                            numList.Add(Convert.ToDecimal(txtNumBox.Text));
                             operatorList.Add(nextOperatorStr);
                             labelSet(true, operatorStr);
                             labelSet(false, txtNumBox.Text);
                             operatorStr = nextOperatorStr;
 
                         }
-                        else if( numList.Count == 2 && ((nextOperatorStr == "×" || nextOperatorStr == "÷") && (operatorList[1] == "×" || operatorList[1] == "÷")))
+                        else if (numList.Count == 2 && ((nextOperatorStr == "×" || nextOperatorStr == "÷") && (operatorList[1] == "×" || operatorList[1] == "÷")))
                         {
-                            Console.WriteLine("hihiiiii");
                             labelSet(true, operatorStr);
                             labelSet(false, txtNumBox.Text);
 
@@ -233,9 +230,31 @@ namespace Calculator
                             operatorList.RemoveAt(1);
                             operatorList.Add(nextOperatorStr);
                         }
+                        else if(numList.Count == 2 && (nextOperatorStr == "+" || nextOperatorStr == "-"))
+                        {
+                            labelSet(true, operatorStr);
+                            labelSet(false, txtNumBox.Text);
+
+                            computeRes(numList[1], Convert.ToDecimal(txtNumBox.Text), operatorList[1]);
+                            computeRes(numList[0], result, operatorList[0]);
+                            numList.Clear();
+                            operatorList.Clear();
+                            operatorStr = nextOperatorStr;
+
+                        }
+                        else if ((operatorStr == "+" || operatorStr == "-") && (nextOperatorStr == "×" || nextOperatorStr == "÷"))
+                        {
+                            labelSet(true, operatorStr);
+                            labelSet(false, txtNumBox.Text);
+
+                            numList.Add(result);
+                            operatorList.Add(operatorStr);
+                            numList.Add(Convert.ToDecimal(txtNumBox.Text));
+                            operatorList.Add(nextOperatorStr);
+                            operatorStr = nextOperatorStr;
+                        }
                         else
                         {
-                            Console.WriteLine("šamoooone");
                             secNum = Convert.ToDecimal(txtNumBox.Text);
                             computeRes(result, secNum, operatorStr);
 
@@ -260,12 +279,14 @@ namespace Calculator
                             operatorList.Add(nextOperatorStr);
                         }
                         else
-                        {
+                        {   
                             computeRes(firstNum, Convert.ToDecimal(txtNumBox.Text), operatorStr);
                             operatorStr = nextOperatorStr;
                             firstNum = result;
                             //printing the result
                             txtNumBox.Text = result.ToString();
+                            
+                            
                         }
                         opLast = true;
                     }
