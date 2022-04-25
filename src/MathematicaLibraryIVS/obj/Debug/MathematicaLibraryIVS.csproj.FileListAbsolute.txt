@@ -10,3 +10,9 @@ C:\Users\gabik\Desktop\skola\letny\IVS\IVS_Projekt2_Kalkulacka\src\MathematicaLi
 C:\Users\gabik\Desktop\skola\letny\IVS\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\obj\Debug\MathematicaLibraryIVS.csproj.CoreCompileInputs.cache
 C:\Users\gabik\Desktop\skola\letny\IVS\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\obj\Debug\MathematicaLibraryIVS.dll
 C:\Users\gabik\Desktop\skola\letny\IVS\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\obj\Debug\MathematicaLibraryIVS.pdb
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\LIB%NU_GET\MathematicaLibraryIVS.dll
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\LIB%NU_GET\MathematicaLibraryIVS.pdb
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\obj\Debug\MathematicaLibraryIVS.csproj.AssemblyReference.cache
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\obj\Debug\MathematicaLibraryIVS.csproj.CoreCompileInputs.cache
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\obj\Debug\MathematicaLibraryIVS.dll
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\obj\Debug\MathematicaLibraryIVS.pdb

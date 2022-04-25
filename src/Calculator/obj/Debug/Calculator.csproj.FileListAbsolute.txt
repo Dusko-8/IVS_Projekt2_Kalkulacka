@@ -59,3 +59,8 @@ C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculat
 C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.exe.manifest
 C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.application
 C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.AboutWindow.resources
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\Calculator.exe.manifest
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\bin\Debug\Calculator.application
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.AboutWindow.resources
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.exe.manifest
+D:\vut\ivs\IVS_Projekt2_Kalkulacka\src\Calculator\obj\Debug\Calculator.application
