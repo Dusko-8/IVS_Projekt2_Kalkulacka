@@ -1,6 +1,8 @@
 ﻿using MathematicaLibraryIVS;
 using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Linq;
 
 
 //known bugs:
@@ -41,6 +43,10 @@ namespace Calculator
         decimal result = 0;
         int operationCount = 0;
         string operatorStr;
+        string nextOperatorStr;
+        List<decimal> numList = new List<decimal>();
+        List<string> operatorList = new List<string>();
+
         public CalculatorWindow()
         {
             InitializeComponent();
@@ -170,6 +176,11 @@ namespace Calculator
                     labelSet(false, txtNumBox.Text);
                     operatorStr = opButton.Text;
                     labelSet(true, operatorStr);
+                    if (operatorStr == "+" || operatorStr == "-")
+                    {
+                        numList.Add(firstNum);
+                        operatorList.Add(operatorStr);
+                    }
                     lineClear = true;
                     operationCount++;
                     opLast = true;
@@ -191,33 +202,88 @@ namespace Calculator
                     operationCount++;
                     if (operationCount >= 3) // chaining 3 or more operation
                     {
-                        secNum = Convert.ToDecimal(txtNumBox.Text);
-                        computeRes(result, secNum, operatorStr);
+                        nextOperatorStr = opButton.Text;
+                        if (numList.Count == 1 && (nextOperatorStr == "×" || nextOperatorStr == "÷"))
+                        {
+                            numList[0] = result;
+                            operatorList[0] = operatorStr;
+                            numList.Add(Convert.ToDecimal(txtNumBox.Text));
+                            operatorList.Add(nextOperatorStr);
+                            labelSet(true, operatorStr);
+                            labelSet(false, txtNumBox.Text);
+                            operatorStr = nextOperatorStr;
 
-                        labelSet(true, operatorStr);
-                        labelSet(false, secNum.ToString());
+                        }
+                        else if (numList.Count == 2 && ((nextOperatorStr == "×" || nextOperatorStr == "÷") && (operatorList[1] == "×" || operatorList[1] == "÷")))
+                        {
+                            labelSet(true, operatorStr);
+                            labelSet(false, txtNumBox.Text);
 
-                        operatorStr = opButton.Text; //funguje aj bez tohoto
+                            computeRes(numList[1], Convert.ToDecimal(txtNumBox.Text), operatorList[1]);
+                            numList.RemoveAt(1);
+                            numList.Add(result);
+                            operatorStr = nextOperatorStr;
+                            operatorList.RemoveAt(1);
+                            operatorList.Add(nextOperatorStr);
+                        }
+                        else if (numList.Count == 2 && (nextOperatorStr == "+" || nextOperatorStr == "-"))
+                        {
+                            labelSet(true, operatorStr);
+                            labelSet(false, txtNumBox.Text);
 
-                        opLast = true;
+                            computeRes(numList[1], Convert.ToDecimal(txtNumBox.Text), operatorList[1]);
+                            computeRes(numList[0], result, operatorList[0]);
+                            numList.Clear();
+                            operatorList.Clear();
+                            operatorStr = nextOperatorStr;
 
+                        }
+                        else if ((operatorStr == "+" || operatorStr == "-") && (nextOperatorStr == "×" || nextOperatorStr == "÷"))
+                        {
+                            labelSet(true, operatorStr);
+                            labelSet(false, txtNumBox.Text);
+
+                            numList.Add(result);
+                            operatorList.Add(operatorStr);
+                            numList.Add(Convert.ToDecimal(txtNumBox.Text));
+                            operatorList.Add(nextOperatorStr);
+                            operatorStr = nextOperatorStr;
+                        }
+                        else
+                        {
+                            secNum = Convert.ToDecimal(txtNumBox.Text);
+                            computeRes(result, secNum, operatorStr);
+
+                            labelSet(true, operatorStr);
+                            labelSet(false, secNum.ToString());
+
+                            operatorStr = nextOperatorStr;
+                        }
                         firstNum = result;
                         //printing the result
                         txtNumBox.Text = result.ToString();
+                        opLast = true;
                     }
                     else // chaining two operations
                     {
                         labelSet(false, txtNumBox.Text);
-
-                        computeRes(firstNum, Convert.ToDecimal(txtNumBox.Text), operatorStr);
-
-                        operatorStr = opButton.Text;
+                        nextOperatorStr = opButton.Text;
+                        if (numList.Count == 1 && (nextOperatorStr == "×" || nextOperatorStr == "÷"))
+                        {
+                            numList.Add(Convert.ToDecimal(txtNumBox.Text));
+                            operatorStr = nextOperatorStr;
+                            operatorList.Add(nextOperatorStr);
+                        }
+                        else
+                        {
+                            computeRes(firstNum, Convert.ToDecimal(txtNumBox.Text), operatorStr);
+                            operatorStr = nextOperatorStr;
+                            firstNum = result;
+                            //printing the result
+                            txtNumBox.Text = result.ToString();
+                        }
 
                         opLast = true;
-
-                        firstNum = result;
-                        //printing the result
-                        txtNumBox.Text = result.ToString();
                     }
                     lineClear = true;
                 }
@@ -229,7 +295,7 @@ namespace Calculator
         /// Fuction sets track box 
         /// </summary>
         /// <param name="type">If type is true, fuction uses format for operation. If type is false,function uses format for numbers</param>
-        /// <param name="lbltext"></param>
+        /// <param name="lbltext">string(number or operation) to be set in box</param>
         private void labelSet(bool type, string lbltext)
         {
             if (!type)
@@ -338,7 +404,11 @@ namespace Calculator
         {
             if (!opLast)
             {
-                if (operationCount > 0)
+                if (operationCount == 1)
+                {
+                    printResult();
+                }
+                else if (operationCount >= 2)
                 {
                     labelSet(true, operatorStr);
                     printResult();
@@ -374,7 +444,11 @@ namespace Calculator
         {
             if (!opLast)
             {
-                if (operationCount > 0)
+                if (operationCount == 1)
+                {
+                    printResult();
+                }
+                else if (operationCount >= 2)
                 {
                     labelSet(true, operatorStr);
                     printResult();
@@ -412,7 +486,11 @@ namespace Calculator
         {
             if (!opLast)
             {
-                if (operationCount > 0)
+                if (operationCount == 1)
+                {
+                    printResult();
+                }
+                else if (operationCount >= 2)
                 {
                     labelSet(true, operatorStr);
                     printResult();
@@ -543,11 +621,22 @@ namespace Calculator
             }
 
             labelSet(true, "=");
-            secNum = Convert.ToDecimal(txtNumBox.Text);
+            secNum = Convert.ToDecimal(txtNumBox.Text); 
+            if (numList.Count == 2)
+            {
+                computeRes(numList[1], secNum, operatorList[1]);
+                firstNum = numList[0];
+                secNum = result;
+                operatorStr = operatorList[0];
+
+            }
             computeRes(firstNum, secNum, operatorStr);
             trackClear = true;
             operatorStr = "";
+            nextOperatorStr = "";
             operationCount = 0;
+            numList.Clear();
+            operatorList.Clear();
             lineClear = true;
             firstNum = result;
             txtNumBox.Text = result.ToString();
