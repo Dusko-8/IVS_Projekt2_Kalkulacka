@@ -1,0 +1,11 @@
+P:\IVS_Projekt2_Kalkulacka\src\StandardDeviation\obj\Debug\StandardDeviation.csproj.AssemblyReference.cache
+P:\IVS_Projekt2_Kalkulacka\src\StandardDeviation\obj\Debug\StandardDeviation.csproj.SuggestedBindingRedirects.cache
+P:\IVS_Projekt2_Kalkulacka\src\StandardDeviation\obj\Debug\StandardDeviation.csproj.CoreCompileInputs.cache
+P:\IVS_Projekt2_Kalkulacka\src\StandardDeviation\bin\Debug\StandardDeviation.exe.config
+P:\IVS_Projekt2_Kalkulacka\src\StandardDeviation\bin\Debug\StandardDeviation.exe
+P:\IVS_Projekt2_Kalkulacka\src\StandardDeviation\bin\Debug\StandardDeviation.pdb
+P:\IVS_Projekt2_Kalkulacka\src\StandardDeviation\bin\Debug\MathematicaLibraryIVS.dll
+P:\IVS_Projekt2_Kalkulacka\src\StandardDeviation\bin\Debug\MathematicaLibraryIVS.pdb
+P:\IVS_Projekt2_Kalkulacka\src\StandardDeviation\obj\Debug\StandardDeviation.csproj.CopyComplete
+P:\IVS_Projekt2_Kalkulacka\src\StandardDeviation\obj\Debug\StandardDeviation.exe
+P:\IVS_Projekt2_Kalkulacka\src\StandardDeviation\obj\Debug\StandardDeviation.pdb

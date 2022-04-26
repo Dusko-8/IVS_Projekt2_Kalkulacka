@@ -76,7 +76,6 @@ namespace StandardDeviation
             for (int i = 0; i < count; i++)
             {
                 numList.Add(r.Next(0, 1000));
-                Console.WriteLine(numList[i]);
             }
 
             return numList;
