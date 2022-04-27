@@ -1,4 +1,4 @@
-xlogin01 100 (základ GUI a základní mat. operace)
-xlogin02 100 (pokročilé mat. operace)
-xlogin03 90 (profiling, instalátor)
-xlogin04 110 (testy, dokumentace)
+xpagan00 100 (Dokumentace,Impllementácia pokročilích mat. operací)
+xmahut01 100 (profiling,základ GUI,Impllementácia základní mat funkcí )
+xsluka00 100 (TDD Testy,základní mat funkce ML,pokročilé mat. operace ML)
+xduric06 100 (instalátor,Impllementácia pokročilích mat. operací)
