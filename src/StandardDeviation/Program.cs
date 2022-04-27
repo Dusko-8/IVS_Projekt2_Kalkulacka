@@ -11,7 +11,7 @@ namespace StandardDeviation
         /// Function reads input, deletes white spaces and coverts strings to decimal
         /// </summary>
         /// <returns>List of decimal numbers</returns>
-        static List<decimal> readInput()
+        static List<decimal> ReadInput()
         {
             List<decimal> numInput = new List<decimal>();
             decimal parsedNum;
@@ -41,7 +41,7 @@ namespace StandardDeviation
         /// </summary>
         /// <param name="numList">List of decimal numbers</param>
         /// <returns>decimal standard deviation</returns>
-        static decimal calcSDeviation(List<decimal> numList)
+        static decimal CalcSDeviation(List<decimal> numList)
         {
             decimal finalResult = 0;
             decimal mean = 0;
@@ -63,37 +63,14 @@ namespace StandardDeviation
             return finalResult;
         }
 
-        /// <summary>
-        /// Function generates random numbers for profiling
-        /// </summary>
-        /// <param name="count">how many numbers should be generated</param>
-        /// <returns></returns>
-        static List<decimal> genRandNum(int count)
-        {
-            List<decimal> numList = new List<decimal>();
-            Random r = new Random();
-
-            for (int i = 0; i < count; i++)
-            {
-                numList.Add(r.Next(0, 1000));
-            }
-
-            return numList;
-        }
-
-
-
         static void Main(string[] args)
         {
             List<decimal> numList = new List<decimal>();
             decimal deviationResult;
 
-            numList = genRandNum(10);
-            //numList = genRandNum(100);
-            //numList = genRandNum(1000);
-            //numList = readInput();
+            numList = ReadInput();
 
-            deviationResult = calcSDeviation(numList);
+            deviationResult = CalcSDeviation(numList);
 
             Console.WriteLine(deviationResult);
 

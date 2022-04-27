@@ -317,7 +317,7 @@ namespace Math_Library.UnitTests
         }
 
         [TestMethod]
-        public void power_CorectInput_AreEqual()
+        public void Power_CorectInput_AreEqual()
         {
             //Arrange
             decimal a = 5;
@@ -344,7 +344,7 @@ namespace Math_Library.UnitTests
             Assert.AreEqual(1, result6);
         }
         [TestMethod]
-        public void power_IncorectInput_AreEqual()
+        public void Power_IncorectInput_AreEqual()
         {
             //Arrange
             decimal a = 5;
@@ -389,7 +389,7 @@ namespace Math_Library.UnitTests
 
         }
         [TestMethod]
-        public void root_CorectInput_AreEqual()
+        public void Root_CorectInput_AreEqual()
         {
             //Arrange
             decimal a = 25;
@@ -413,7 +413,7 @@ namespace Math_Library.UnitTests
 
         }
         [TestMethod]
-        public void root_IncorectInput_AreEqual()
+        public void Root_IncorectInput_AreEqual()
         {
             //Arrange
             decimal a = 25;
@@ -460,7 +460,7 @@ namespace Math_Library.UnitTests
         }
 
         [TestMethod]
-        public void modulo_CorectInput_AreEqual()
+        public void Modulo_CorectInput_AreEqual()
         {
             //Arrange
             decimal a = 25;
@@ -488,7 +488,7 @@ namespace Math_Library.UnitTests
 
         }
         [TestMethod]
-        public void modulo_IncorectInput_AreEqual()
+        public void Modulo_IncorectInput_AreEqual()
         {
             //Arrange
             decimal a = 25;

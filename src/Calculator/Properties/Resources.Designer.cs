@@ -63,9 +63,9 @@ namespace Calculator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap about_btnsmol {
+        internal static System.Drawing.Bitmap about_image {
             get {
-                object obj = ResourceManager.GetObject("about_btnsmol", resourceCulture);
+                object obj = ResourceManager.GetObject("about_image", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -87,6 +87,16 @@ namespace Calculator.Properties {
             get {
                 object obj = ResourceManager.GetObject("help_image", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] user_manual {
+            get {
+                object obj = ResourceManager.GetObject("user_manual", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

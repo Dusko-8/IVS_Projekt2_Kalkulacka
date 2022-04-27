@@ -1,8 +1,7 @@
 ﻿using MathematicaLibraryIVS;
 using System;
-using System.Windows.Forms;
 using System.Collections.Generic;
-using System.Linq;
+using System.Windows.Forms;
 
 
 //known bugs:
@@ -55,7 +54,7 @@ namespace Calculator
         /// <summary>
         /// Function for printing Error, resets firstNumber, operatorStr and operationCount, sets clearing for txtNumbox, clears txtTrackBox
         /// </summary>
-        private void printError()
+        private void PrintError()
         {
             txtNumBox.Text = "Error";
             firstNum = 0;
@@ -70,7 +69,7 @@ namespace Calculator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void insertComma_Click(object sender, EventArgs e)
+        private void InsertComma_Click(object sender, EventArgs e)
         {
             if (txtNumBox.Text == "Error")
             {
@@ -89,7 +88,7 @@ namespace Calculator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void insertNum_Click(object sender, EventArgs e)
+        private void InsertNum_Click(object sender, EventArgs e)
         {
 
             Button opButton = (Button)sender;
@@ -128,7 +127,7 @@ namespace Calculator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void clear_click(object sender, EventArgs e)
+        private void Clear_click(object sender, EventArgs e)
         {
             if (!lineClear)
             {
@@ -143,7 +142,7 @@ namespace Calculator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void clearAll_click(object sender, EventArgs e)
+        private void ClearAll_click(object sender, EventArgs e)
         {
             txtNumBox.Clear();
             txtBoxTrack.Text = "";
@@ -160,7 +159,7 @@ namespace Calculator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void basic_op_click(object sender, EventArgs e)
+        private void Basic_op_click(object sender, EventArgs e)
         {
             Button opButton = (Button)sender;
             if (!opLast)
@@ -169,13 +168,13 @@ namespace Calculator
                 {
                     return;
                 }
-                commaCheck();
+                CommaCheck();
                 if (firstNum == 0 && operationCount == 0) //first operation
                 {
                     firstNum = Convert.ToDecimal(txtNumBox.Text);
-                    labelSet(false, txtNumBox.Text);
+                    LabelSet(false, txtNumBox.Text);
                     operatorStr = opButton.Text;
-                    labelSet(true, operatorStr);
+                    LabelSet(true, operatorStr);
                     if (operatorStr == "+" || operatorStr == "-")
                     {
                         numList.Add(firstNum);
@@ -190,9 +189,9 @@ namespace Calculator
                     eqLast = false;
                     txtBoxTrack.Clear();
                     trackClear = false;
-                    labelSet(false, firstNum.ToString());
+                    LabelSet(false, firstNum.ToString());
                     operatorStr = opButton.Text;
-                    labelSet(true, operatorStr);
+                    LabelSet(true, operatorStr);
                     lineClear = true;
                     operationCount++;
                     opLast = true;
@@ -209,17 +208,17 @@ namespace Calculator
                             operatorList[0] = operatorStr;
                             numList.Add(Convert.ToDecimal(txtNumBox.Text));
                             operatorList.Add(nextOperatorStr);
-                            labelSet(true, operatorStr);
-                            labelSet(false, txtNumBox.Text);
+                            LabelSet(true, operatorStr);
+                            LabelSet(false, txtNumBox.Text);
                             operatorStr = nextOperatorStr;
 
                         }
                         else if (numList.Count == 2 && ((nextOperatorStr == "×" || nextOperatorStr == "÷") && (operatorList[1] == "×" || operatorList[1] == "÷")))
                         {
-                            labelSet(true, operatorStr);
-                            labelSet(false, txtNumBox.Text);
+                            LabelSet(true, operatorStr);
+                            LabelSet(false, txtNumBox.Text);
 
-                            computeRes(numList[1], Convert.ToDecimal(txtNumBox.Text), operatorList[1]);
+                            ComputeRes(numList[1], Convert.ToDecimal(txtNumBox.Text), operatorList[1]);
                             numList.RemoveAt(1);
                             numList.Add(result);
                             operatorStr = nextOperatorStr;
@@ -228,11 +227,11 @@ namespace Calculator
                         }
                         else if (numList.Count == 2 && (nextOperatorStr == "+" || nextOperatorStr == "-"))
                         {
-                            labelSet(true, operatorStr);
-                            labelSet(false, txtNumBox.Text);
+                            LabelSet(true, operatorStr);
+                            LabelSet(false, txtNumBox.Text);
 
-                            computeRes(numList[1], Convert.ToDecimal(txtNumBox.Text), operatorList[1]);
-                            computeRes(numList[0], result, operatorList[0]);
+                            ComputeRes(numList[1], Convert.ToDecimal(txtNumBox.Text), operatorList[1]);
+                            ComputeRes(numList[0], result, operatorList[0]);
                             numList.Clear();
                             operatorList.Clear();
                             operatorStr = nextOperatorStr;
@@ -240,8 +239,8 @@ namespace Calculator
                         }
                         else if ((operatorStr == "+" || operatorStr == "-") && (nextOperatorStr == "×" || nextOperatorStr == "÷"))
                         {
-                            labelSet(true, operatorStr);
-                            labelSet(false, txtNumBox.Text);
+                            LabelSet(true, operatorStr);
+                            LabelSet(false, txtNumBox.Text);
 
                             numList.Add(result);
                             operatorList.Add(operatorStr);
@@ -252,10 +251,10 @@ namespace Calculator
                         else
                         {
                             secNum = Convert.ToDecimal(txtNumBox.Text);
-                            computeRes(result, secNum, operatorStr);
+                            ComputeRes(result, secNum, operatorStr);
 
-                            labelSet(true, operatorStr);
-                            labelSet(false, secNum.ToString());
+                            LabelSet(true, operatorStr);
+                            LabelSet(false, secNum.ToString());
 
                             operatorStr = nextOperatorStr;
                         }
@@ -266,7 +265,7 @@ namespace Calculator
                     }
                     else // chaining two operations
                     {
-                        labelSet(false, txtNumBox.Text);
+                        LabelSet(false, txtNumBox.Text);
                         nextOperatorStr = opButton.Text;
                         if (numList.Count == 1 && (nextOperatorStr == "×" || nextOperatorStr == "÷"))
                         {
@@ -276,7 +275,7 @@ namespace Calculator
                         }
                         else
                         {
-                            computeRes(firstNum, Convert.ToDecimal(txtNumBox.Text), operatorStr);
+                            ComputeRes(firstNum, Convert.ToDecimal(txtNumBox.Text), operatorStr);
                             operatorStr = nextOperatorStr;
                             firstNum = result;
                             //printing the result
@@ -296,7 +295,7 @@ namespace Calculator
         /// </summary>
         /// <param name="type">If type is true, fuction uses format for operation. If type is false,function uses format for numbers</param>
         /// <param name="lbltext">string(number or operation) to be set in box</param>
-        private void labelSet(bool type, string lbltext)
+        private void LabelSet(bool type, string lbltext)
         {
             if (!type)
             {
@@ -318,33 +317,33 @@ namespace Calculator
         /// <param name="firstNum">first number of operation</param>
         /// <param name="secNum">second number of operation (can be null if not needed)</param>
         /// <param name="operatorStr">operation operator</param>
-        private void computeRes(decimal firstNum, decimal? secNum, string operatorStr)
+        private void ComputeRes(decimal firstNum, decimal? secNum, string operatorStr)
         {
             switch (operatorStr)
             {
                 case "+":
-                    result = ML.plus(firstNum, (decimal)secNum);
+                    result = ML.Plus(firstNum, (decimal)secNum);
                     break;
                 case "-":
-                    result = ML.minus(firstNum, (decimal)secNum);
+                    result = ML.Minus(firstNum, (decimal)secNum);
                     break;
                 case "×":
-                    result = ML.multiply(firstNum, (decimal)secNum);
+                    result = ML.Multiply(firstNum, (decimal)secNum);
                     break;
                 case "÷":
-                    result = ML.divide(firstNum, (decimal)secNum);
+                    result = ML.Divide(firstNum, (decimal)secNum);
                     break;
                 case "%":
-                    result = ML.modulo(firstNum, (decimal)secNum);
+                    result = ML.Modulo(firstNum, (decimal)secNum);
                     break;
                 case "!":
-                    result = ML.factorial(firstNum);
+                    result = ML.Factorial(firstNum);
                     break;
                 case "^":
-                    result = ML.power(firstNum, (decimal)secNum);
+                    result = ML.Power(firstNum, (decimal)secNum);
                     break;
                 case "√":
-                    result = ML.root(firstNum, (decimal)secNum);
+                    result = ML.Root(firstNum, (decimal)secNum);
                     break;
             }
 
@@ -355,14 +354,14 @@ namespace Calculator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnFct_click(object sender, EventArgs e)
+        private void BtnFct_click(object sender, EventArgs e)
         {
             if (operationCount > 0) //If user is chaining operations, they will be calculated first, then the factorial will be done
             {
-                labelSet(true, operatorStr);
-                printResult();
+                LabelSet(true, operatorStr);
+                PrintResult();
             }
-            commaCheck();
+            CommaCheck();
 
             if (txtNumBox.Text == "Error") //Button press wont work until there is Error message displayed
             {
@@ -383,15 +382,15 @@ namespace Calculator
             try
             {
                 operatorStr = "!";
-                labelSet(false, txtNumBox.Text + operatorStr);
-                printResult();
+                LabelSet(false, txtNumBox.Text + operatorStr);
+                PrintResult();
                 eqLast = true;
                 operationCount++;
             }
 
             catch (Exception) //If any exception is thrown from the ML library, calculator will print error
             {
-                printError();
+                PrintError();
             }
         }
 
@@ -400,20 +399,20 @@ namespace Calculator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mod_click(object sender, EventArgs e)
+        private void Mod_click(object sender, EventArgs e)
         {
             if (!opLast)
             {
                 if (operationCount == 1)
                 {
-                    printResult();
+                    PrintResult();
                 }
                 else if (operationCount >= 2)
                 {
-                    labelSet(true, operatorStr);
-                    printResult();
+                    LabelSet(true, operatorStr);
+                    PrintResult();
                 }
-                commaCheck();
+                CommaCheck();
 
                 if (txtNumBox.Text == "Error") //Button press wont work until there is Error message displayed
                 {
@@ -425,9 +424,9 @@ namespace Calculator
                     {
                         firstNum = Convert.ToDecimal(txtNumBox.Text);
                     }
-                    labelSet(false, txtNumBox.Text);
+                    LabelSet(false, txtNumBox.Text);
                     operatorStr = "%";
-                    labelSet(true, operatorStr);
+                    LabelSet(true, operatorStr);
                     opLast = true;
                     lineClear = true;
                     operationCount++;
@@ -440,20 +439,20 @@ namespace Calculator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void power_click(object sender, EventArgs e)
+        private void Power_click(object sender, EventArgs e)
         {
             if (!opLast)
             {
                 if (operationCount == 1)
                 {
-                    printResult();
+                    PrintResult();
                 }
                 else if (operationCount >= 2)
                 {
-                    labelSet(true, operatorStr);
-                    printResult();
+                    LabelSet(true, operatorStr);
+                    PrintResult();
                 }
-                commaCheck();
+                CommaCheck();
 
                 if (txtNumBox.Text == "Error") //Button press wont work until there is Error message displayed
                 {
@@ -465,9 +464,9 @@ namespace Calculator
                     {
                         firstNum = Convert.ToDecimal(txtNumBox.Text);
                     }
-                    labelSet(false, txtNumBox.Text);
+                    LabelSet(false, txtNumBox.Text);
                     operatorStr = "^";
-                    labelSet(false, operatorStr);
+                    LabelSet(false, operatorStr);
                     opLast = true;
                     operationCount++;
                     lineClear = true;
@@ -482,20 +481,20 @@ namespace Calculator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void root_click(object sender, EventArgs e)
+        private void Root_click(object sender, EventArgs e)
         {
             if (!opLast)
             {
                 if (operationCount == 1)
                 {
-                    printResult();
+                    PrintResult();
                 }
                 else if (operationCount >= 2)
                 {
-                    labelSet(true, operatorStr);
-                    printResult();
+                    LabelSet(true, operatorStr);
+                    PrintResult();
                 }
-                commaCheck();
+                CommaCheck();
 
                 if (txtNumBox.Text == "Error") //Button press wont work until there is Error message displayed
                 {
@@ -510,7 +509,7 @@ namespace Calculator
                         firstNum = Convert.ToDecimal(txtNumBox.Text);
                     }
                     operatorStr = "√";
-                    labelSet(true, operatorStr + firstNum);
+                    LabelSet(true, operatorStr + firstNum);
                     opLast = true;
                     eqLast = false;
                     lineClear = true;
@@ -524,7 +523,7 @@ namespace Calculator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void eql_click(object sender, EventArgs e)
+        private void Eql_click(object sender, EventArgs e)
         {
             if (!opLast && !eqLast)
             {
@@ -538,17 +537,17 @@ namespace Calculator
                         {
                             if (operationCount >= 2)
                             {
-                                labelSet(true, operatorStr);
+                                LabelSet(true, operatorStr);
                             }
                             try
                             {
-                                printResult();
+                                PrintResult();
                                 eqLast = true;
 
                             }
                             catch (Exception)
                             {
-                                printError();
+                                PrintError();
                             }
 
                         }
@@ -556,35 +555,35 @@ namespace Calculator
                     case "%":
                         try
                         {
-                            printResult();
+                            PrintResult();
                             eqLast = true;
                         }
                         catch (Exception)
                         {
-                            printError();
+                            PrintError();
                         }
                         break;
                     case "^":
                         try
                         {
-                            printResult();
+                            PrintResult();
                             eqLast = true;
                         }
                         catch (Exception)
                         {
-                            printError();
+                            PrintError();
                         }
                         break;
                     case "√":
                         try
                         {
 
-                            printResult();
+                            PrintResult();
                             eqLast = true;
                         }
                         catch (Exception)
                         {
-                            printError();
+                            PrintError();
                         }
                         break;
                 }
@@ -594,43 +593,43 @@ namespace Calculator
         /// <summary>
         /// Function for printing result
         /// </summary>
-        private void printResult()
+        private void PrintResult()
         {
 
             switch (operatorStr) //Formatting of special prints
             {
                 case "√":
                     txtBoxTrack.Clear();
-                    labelSet(false, txtNumBox.Text + operatorStr + firstNum);
+                    LabelSet(false, txtNumBox.Text + operatorStr + firstNum);
                     break;
                 case "^":
                     txtBoxTrack.Clear();
-                    labelSet(false, firstNum + operatorStr + txtNumBox.Text);
+                    LabelSet(false, firstNum + operatorStr + txtNumBox.Text);
                     break;
                 case "!":
                     txtBoxTrack.Clear();
-                    labelSet(false, firstNum + operatorStr);
+                    LabelSet(false, firstNum + operatorStr);
                     break;
                 case "%":
                     txtBoxTrack.Clear();
-                    labelSet(false, firstNum + operatorStr + txtNumBox.Text);
+                    LabelSet(false, firstNum + operatorStr + txtNumBox.Text);
                     break;
                 default:
-                    labelSet(false, txtNumBox.Text);
+                    LabelSet(false, txtNumBox.Text);
                     break;
             }
 
-            labelSet(true, "=");
-            secNum = Convert.ToDecimal(txtNumBox.Text); 
+            LabelSet(true, "=");
+            secNum = Convert.ToDecimal(txtNumBox.Text);
             if (numList.Count == 2)
             {
-                computeRes(numList[1], secNum, operatorList[1]);
+                ComputeRes(numList[1], secNum, operatorList[1]);
                 firstNum = numList[0];
                 secNum = result;
                 operatorStr = operatorList[0];
 
             }
-            computeRes(firstNum, secNum, operatorStr);
+            ComputeRes(firstNum, secNum, operatorStr);
             trackClear = true;
             operatorStr = "";
             nextOperatorStr = "";
@@ -645,7 +644,7 @@ namespace Calculator
         /// <summary>
         /// Function for checking if the last input character before operation was a comma
         /// </summary>
-        private void commaCheck()
+        private void CommaCheck()
         {
             if (commaLast)
             {
@@ -654,9 +653,17 @@ namespace Calculator
             }
 
         }
-        private void help_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// Function handling opening pdf file containing user manual
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Help_Click(object sender, EventArgs e)
         {
-            //TODO help
+            String file = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\user_manual.pdf";
+            System.IO.File.WriteAllBytes(file, global::Calculator.Properties.Resources.user_manual);
+            System.Diagnostics.Process.Start(file);
         }
 
         /// <summary>
@@ -666,7 +673,7 @@ namespace Calculator
         /// <param name="e"></param>
         private void CalculatorWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            
+
             switch (e.KeyCode)
             {
                 case Keys.NumPad0:
@@ -719,7 +726,7 @@ namespace Calculator
             }
         }
 
-        private void aboutBtn_Click(object sender, EventArgs e)
+        private void AboutBtn_Click(object sender, EventArgs e)
         {
             AboutWindow About = new AboutWindow();
             About.ShowDialog();
