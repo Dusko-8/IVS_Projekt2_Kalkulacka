@@ -27,10 +27,10 @@ namespace Math_Library.UnitTests
             decimal h = 0.53333331M;
 
             //Act 
-            decimal result1 = ML.plus(a,b);
-            decimal result2 = ML.plus(c, d);
-            decimal result3 = ML.plus(e, f);
-            decimal result4 = ML.plus(g, h);
+            decimal result1 = ML.Plus(a,b);
+            decimal result2 = ML.Plus(c, d);
+            decimal result3 = ML.Plus(e, f);
+            decimal result4 = ML.Plus(g, h);
 
             //Assert
             Assert.AreEqual(3, result1);
@@ -51,7 +51,7 @@ namespace Math_Library.UnitTests
             try
             {
                 //Act 
-                decimal result1 = ML.plus(a,b);
+                decimal result1 = ML.Plus(a,b);
                 Console.WriteLine(result1);
                 //Assert
                 Assert.Fail("Number is larger/lower than decimal type limit");
@@ -65,7 +65,7 @@ namespace Math_Library.UnitTests
             try
             {
                 //Act 
-                decimal result1 = ML.plus(c, d);
+                decimal result1 = ML.Plus(c, d);
                 //Assert
                 Assert.Fail("Number is larger/lower than decimal type limit");
             }
@@ -94,10 +94,10 @@ namespace Math_Library.UnitTests
             decimal h = 0.00000001M;
 
             //Act 
-            decimal result1 = ML.minus(a, b);
-            decimal result2 = ML.minus(c, d);
-            decimal result3 = ML.minus(e, f);
-            decimal result4 = ML.minus(g, h);
+            decimal result1 = ML.Minus(a, b);
+            decimal result2 = ML.Minus(c, d);
+            decimal result3 = ML.Minus(e, f);
+            decimal result4 = ML.Minus(g, h);
 
             //Assert
             Assert.AreEqual(-1, result1);
@@ -117,7 +117,7 @@ namespace Math_Library.UnitTests
             try
             {
                 //Act 
-                decimal result1 = ML.minus(a, b);
+                decimal result1 = ML.Minus(a, b);
                 Console.WriteLine(result1);
                 //Assert
                 Assert.Fail("Number is larger/lower than decimal type limit");
@@ -149,10 +149,10 @@ namespace Math_Library.UnitTests
             decimal g_h = -47407.2157036995555561M;
 
             //Act 
-            decimal result1 = ML.multiply(a, b);
-            decimal result2 = ML.multiply(c, d);
-            decimal result3 = ML.multiply(e, f);
-            decimal result4 = ML.multiply(g, h);
+            decimal result1 = ML.Multiply(a, b);
+            decimal result2 = ML.Multiply(c, d);
+            decimal result3 = ML.Multiply(e, f);
+            decimal result4 = ML.Multiply(g, h);
 
             //Assert
             Assert.AreEqual(2, result1);
@@ -174,7 +174,7 @@ namespace Math_Library.UnitTests
             try
             {
                 //Act 
-                decimal result1 = ML.multiply(a, b);
+                decimal result1 = ML.Multiply(a, b);
                 Console.WriteLine(result1);
                 //Assert
                 Assert.Fail("Number is larger/lower than decimal type limit");
@@ -188,7 +188,7 @@ namespace Math_Library.UnitTests
             try
             {
                 //Act 
-                decimal result1 = ML.multiply(c, d);
+                decimal result1 = ML.Multiply(c, d);
                 Console.WriteLine(result1);
                 //Assert
                 Assert.Fail("Number is larger/lower than decimal type limit");
@@ -220,10 +220,10 @@ namespace Math_Library.UnitTests
             decimal g_h = -44444.222222M;
 
             //Act 
-            decimal result1 = ML.divide(a, b);
-            decimal result2 = ML.divide(c, d);
-            decimal result3 = ML.divide(e, f);
-            decimal result4 = ML.divide(g, h);
+            decimal result1 = ML.Divide(a, b);
+            decimal result2 = ML.Divide(c, d);
+            decimal result3 = ML.Divide(e, f);
+            decimal result4 = ML.Divide(g, h);
 
             //Assert
             Assert.AreEqual(0.5M, result1);
@@ -242,7 +242,7 @@ namespace Math_Library.UnitTests
             try
             {
                 //Act 
-                decimal result1 = ML.divide(a, b);
+                decimal result1 = ML.Divide(a, b);
                 //Assert
                 Assert.Fail("Dividing_By_Zero");
             }
@@ -261,8 +261,8 @@ namespace Math_Library.UnitTests
 
 
             //Act 
-            decimal result1 = ML.factorial(a);
-            decimal result4 = ML.factorial(d);
+            decimal result1 = ML.Factorial(a);
+            decimal result4 = ML.Factorial(d);
             decimal result4_answer = 15511210043330985984000000M;
 
             //Assert
@@ -281,7 +281,7 @@ namespace Math_Library.UnitTests
 
             try { 
                 //Act 
-                decimal result1 = ML.factorial(a);
+                decimal result1 = ML.Factorial(a);
                 //Assert
                  Assert.Fail("Number is not whole");
             }
@@ -293,7 +293,7 @@ namespace Math_Library.UnitTests
             try
             {
                 //Act 
-                decimal result2 = ML.factorial(b);
+                decimal result2 = ML.Factorial(b);
                 //Assert
                 Assert.Fail("Number is not whole");
             }
@@ -305,7 +305,7 @@ namespace Math_Library.UnitTests
             try
             {
                 //Act 
-                decimal result3 = ML.factorial(c);
+                decimal result3 = ML.Factorial(c);
                 //Assert
                 Assert.Fail("Number is larger/lower than decimal type limit");
             }
@@ -327,12 +327,12 @@ namespace Math_Library.UnitTests
             decimal e = 999999999999999999999999M;
 
             //Act 
-            decimal result1 = ML.power(a,25);
-            decimal result2 = ML.power(b,99999999);
-            decimal result3 = ML.power(c, 99999999);
-            decimal result4 = ML.power(a, 2);
-            decimal result5 = ML.power(d, 2);
-            decimal result6 = ML.power(e, 0);
+            decimal result1 = ML.Power(a,25);
+            decimal result2 = ML.Power(b,99999999);
+            decimal result3 = ML.Power(c, 99999999);
+            decimal result4 = ML.Power(a, 2);
+            decimal result5 = ML.Power(d, 2);
+            decimal result6 = ML.Power(e, 0);
 
 
             //Assert
@@ -353,7 +353,7 @@ namespace Math_Library.UnitTests
             try
             {
                 //Act 
-                decimal result1 = ML.power(a, 2.1M);
+                decimal result1 = ML.Power(a, 2.1M);
                 //Assert
                 Assert.Fail("exponent is not whole positive number");
             }
@@ -365,7 +365,7 @@ namespace Math_Library.UnitTests
             try
             {
                 //Act 
-                decimal result2 = ML.power(a, -2);
+                decimal result2 = ML.Power(a, -2);
                 //Assert
                 Assert.Fail("exponent is not whole positive number");
             }
@@ -377,7 +377,7 @@ namespace Math_Library.UnitTests
             try
             {
                 //Act 
-                decimal result3 = ML.power(a, 99);
+                decimal result3 = ML.Power(a, 99);
                 //Assert
                 Assert.Fail("Number is larger/lower than decimal type limit");
             }
@@ -398,10 +398,10 @@ namespace Math_Library.UnitTests
             decimal d = 16.434856M;
 
             //Act 
-            decimal result1 = ML.root(a,2);
-            decimal result2 = ML.root(b, 9999);
-            decimal result3 = ML.root(c, 5);
-            decimal result4 = ML.root(d, 3);
+            decimal result1 = ML.Root(a,2);
+            decimal result2 = ML.Root(b, 9999);
+            decimal result3 = ML.Root(c, 5);
+            decimal result4 = ML.Root(d, 3);
 
 
             //Assert
@@ -422,7 +422,7 @@ namespace Math_Library.UnitTests
             try
             {
                 //Act 
-                decimal result1 = ML.root(a, 2.1M);
+                decimal result1 = ML.Root(a, 2.1M);
                 //Assert
                 Assert.Fail("root is not whole positive number");
             }
@@ -434,7 +434,7 @@ namespace Math_Library.UnitTests
             try
             {
                 //Act 
-                decimal result2 = ML.root(a, -2);
+                decimal result2 = ML.Root(a, -2);
                 //Assert
                 Assert.Fail("root is not whole positive number");
             }
@@ -446,7 +446,7 @@ namespace Math_Library.UnitTests
             try
             {
                 //Act 
-                decimal result4 = ML.root(b, 2);
+                decimal result4 = ML.Root(b, 2);
                 //Assert
                 Assert.Fail("Number is negative(Not difined)");
             }
@@ -470,11 +470,11 @@ namespace Math_Library.UnitTests
             decimal e = 3.2M;
 
             //Act 
-            decimal result1 = ML.modulo(a, b);
-            decimal result2 = ML.modulo(c, d);
-            decimal result3 = ML.modulo(d, e);
-            decimal result4 = ML.modulo(0, 1);
-            decimal result5 = ML.modulo(26, 5);
+            decimal result1 = ML.Modulo(a, b);
+            decimal result2 = ML.Modulo(c, d);
+            decimal result3 = ML.Modulo(d, e);
+            decimal result4 = ML.Modulo(0, 1);
+            decimal result5 = ML.Modulo(26, 5);
 
 
 
@@ -497,7 +497,7 @@ namespace Math_Library.UnitTests
             try
             {
                 //Act 
-                decimal result1 = ML.modulo(a, b);
+                decimal result1 = ML.Modulo(a, b);
                 //Assert
                 Assert.Fail("Modulo by zero");
             }
