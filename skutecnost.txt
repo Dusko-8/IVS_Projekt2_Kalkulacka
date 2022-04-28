@@ -1,1 +1,16 @@
-tento soubor bude obsahovat rozdil mezi planem projektu a skutecnosti
+1.  Termíny:
+	
+	Pôvodné naplánovanie termínov sa nám nepodarilo dodržať, tím mal asi týždenný zklz
+	zapríčínený prípravami na polsemetrálne skúšky a inými projektami.
+
+2.  Rozdelenie úloh:
+
+	Každý člen tímu splnil svoje pridelené úlohy. Na debuggingu pracovalo viac členov 
+	spoločne.
+
+3.  Komunikačné kanály:
+
+	Komunikácia v tíme prebiehala pomocou Discordu alebo osobných stretnutí. ClickUp
+	sa v konečnom dôsledku nevyužil ani na sledovanie termínov ani na podrobnejšie
+	rozdelenie úloh.
+	

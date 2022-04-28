@@ -1,4 +1,4 @@
-xpagan00 100 (Dokumentace,Impllementácia pokročilích mat. operací)
-xmahut01 100 (profiling,základ GUI,Impllementácia základní mat funkcí )
-xsluka00 100 (TDD Testy,základní mat funkce ML,pokročilé mat. operace ML)
-xduric06 100 (instalátor,Impllementácia pokročilích mat. operací)
+xpagan00 100 (Dokumentácia, Doxyfile, implementácia pokročilých mat. operácií)
+xmahut01 100 (Profiling, GUI, implementácia základných mat. operácií)
+xsluka00 100 (TDD testy, matematická knižnica)
+xduric06 100 (Inštalátor/Odinštalátor, Makefile, implementácia pokročilých mat. operácií)
