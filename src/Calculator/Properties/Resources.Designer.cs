@@ -89,5 +89,15 @@ namespace Calculator.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] user_manual {
+            get {
+                object obj = ResourceManager.GetObject("user_manual", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
