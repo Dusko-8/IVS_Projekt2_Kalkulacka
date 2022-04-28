@@ -1,6 +1,0 @@
-C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\bin\Release\MathematicaLibraryIVS.dll
-C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\bin\Release\MathematicaLibraryIVS.pdb
-C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\obj\Release\MathematicaLibraryIVS.csproj.AssemblyReference.cache
-C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\obj\Release\MathematicaLibraryIVS.csproj.CoreCompileInputs.cache
-C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\obj\Release\MathematicaLibraryIVS.dll
-C:\Users\mtsdu\Desktop\skola\1BIT\letny\IVS\IVS_Projekt2_Kalkulacka\src\MathematicaLibraryIVS\obj\Release\MathematicaLibraryIVS.pdb

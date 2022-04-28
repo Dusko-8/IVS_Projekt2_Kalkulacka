@@ -1,2 +1,0 @@
-P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\obj\Debug\Math_Library.UnitTests.csproj.AssemblyReference.cache
-P:\IVS_Projekt2_Kalkulacka\src\Math_Library.UnitTests\obj\Debug\Math_Library.UnitTests.csproj.CoreCompileInputs.cache
