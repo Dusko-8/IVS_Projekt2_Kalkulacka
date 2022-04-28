@@ -41,23 +41,6 @@ namespace StandardDeviation
                     }
                 }
             }
-
-            /*using (var lines = new StreamReader(Console.OpenStandardInput(), Console.InputEncoding))
-            {
-                var inputLines = lines.ReadToEnd();
-                splitLine = inputLines.Replace(Environment.NewLine, "").Split();
-                foreach (string strNum in splitLine)
-                {
-                    if (decimal.TryParse(strNum, out parsedNum))
-                    {
-                        numInput.Add(parsedNum);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Failed to parse: {0}", strNum);
-                    }
-                }
-            }*/
                 return numInput;
         }
 
