@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
 using MathematicaLibraryIVS;
 
 
@@ -20,7 +23,29 @@ namespace StandardDeviation
 
             while ((inputLine = Console.ReadLine()) != null)
             {
+                inputLine = inputLine.Replace('.', ',');
                 splitLine = inputLine.Split();
+                foreach (string strNum in splitLine)
+                { 
+                    if(String.IsNullOrEmpty(strNum))
+                    {
+                        continue;
+                    }
+                    if (decimal.TryParse(strNum, out parsedNum))
+                    {
+                        numInput.Add(parsedNum);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Failed to parse: {0}", strNum);
+                    }
+                }
+            }
+
+            /*using (var lines = new StreamReader(Console.OpenStandardInput(), Console.InputEncoding))
+            {
+                var inputLines = lines.ReadToEnd();
+                splitLine = inputLines.Replace(Environment.NewLine, "").Split();
                 foreach (string strNum in splitLine)
                 {
                     if (decimal.TryParse(strNum, out parsedNum))
@@ -32,8 +57,8 @@ namespace StandardDeviation
                         Console.WriteLine("Failed to parse: {0}", strNum);
                     }
                 }
-            }
-            return numInput;
+            }*/
+                return numInput;
         }
 
         /// <summary>
@@ -63,41 +88,17 @@ namespace StandardDeviation
             return finalResult;
         }
 
-        /// <summary>
-        /// Function generates random numbers for profiling
-        /// </summary>
-        /// <param name="count">how many numbers should be generated</param>
-        /// <returns></returns>
-        static List<decimal> genRandNum(int count)
-        {
-            List<decimal> numList = new List<decimal>();
-            Random r = new Random();
-
-            for (int i = 0; i < count; i++)
-            {
-                numList.Add(r.Next(0, 1000));
-            }
-
-            return numList;
-        }
-
-
 
         static void Main(string[] args)
         {
             List<decimal> numList = new List<decimal>();
             decimal deviationResult;
 
-            numList = genRandNum(10);
-            //numList = genRandNum(100);
-            //numList = genRandNum(1000);
-            //numList = readInput();
+            numList = readInput();
 
             deviationResult = calcSDeviation(numList);
 
-            Console.WriteLine(deviationResult);
-
-            Console.ReadKey();
+            Console.Write(deviationResult);
         }
     }
 }
