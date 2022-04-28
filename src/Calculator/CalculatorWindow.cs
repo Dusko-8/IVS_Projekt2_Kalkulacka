@@ -655,7 +655,17 @@ namespace Calculator
 
         }
 
-        
+        /// <summary>
+        /// Function handling opening pdf file containing user manual
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void help_Click(object sender, EventArgs e)
+        {
+            String file = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\user_manual.pdf";
+            System.IO.File.WriteAllBytes(file, global::Calculator.Properties.Resources.user_manual);
+            System.Diagnostics.Process.Start(file);
+        }
 
         /// <summary>
         /// Function handling key presses on keyboard
